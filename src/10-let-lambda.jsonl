@@ -1,0 +1,86 @@
+# 10-let-lambda.xlsx: a cafe's catering orders, menu, members, stock and class attendance for LET and LAMBDA (Chapter 10)
+# build: gridcraft-cli run --script workbooks/src/10-let-lambda.jsonl --out workbooks/10-let-lambda.xlsx
+
+# Orders: catering orders. Rules in G1:H4; the Total column is for the reader's LET formula.
+sheet.rename={"sheet": "Sheet1", "name": "Orders"}
+sheet.activate={"sheet": "Orders"}
+range.setValues={"range": "A1", "values": [["Order", "Customer", "Items", "Unit price", "Total"], ["C-301", "Brightside Café", 24, 6.5], ["C-302", "Maple Dental", 40, 6.5], ["C-303", "Peak Fitness", 12, 7.25], ["C-304", "Oak & Ivy Florist", 30, 7.25], ["C-305", "Riverside Books", 18, 6.5], ["C-306", "Green Leaf Grocers", 50, 5.9], ["C-307", "Hilltop Stationery", 10, 7.25], ["C-308", "Bluebird Bakery", 22, 7.25]]}
+home.bold={"range": "A1:E1", "on": true}
+home.fillColor={"range": "A1:E1", "color": "#DDEBF7"}
+home.borders={"range": "A1:E1", "preset": "bottom"}
+home.numberFormat={"range": "D2:E9", "format": "$#,##0.00"}
+range.setValues={"range": "G1", "values": [["Discount from", 200], ["Discount rate", "10%"], ["Free delivery from", 150], ["Delivery fee", 15]]}
+home.bold={"range": "G1:G4", "on": true}
+home.fillColor={"range": "H1:H4", "color": "#FFF2CC"}
+home.numberFormat={"range": "H1", "format": "$#,##0.00"}
+home.numberFormat={"range": "H3:H4", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 55}
+home.columnWidth={"cols": "B:B", "width": 135}
+home.columnWidth={"cols": "C:C", "width": 50}
+home.columnWidth={"cols": "D:E", "width": 80}
+home.columnWidth={"cols": "F:F", "width": 30}
+home.columnWidth={"cols": "G:G", "width": 130}
+home.columnWidth={"cols": "H:H", "width": 70}
+
+# Menu: net prices; the reader adds a named LAMBDA, ADDTAX, and uses it in column C.
+home.insertSheet={"name": "Menu"}
+sheet.activate={"sheet": "Menu"}
+range.setValues={"range": "A1", "values": [["Item", "Net price", "Price with tax"], ["Flat white", 3.2], ["Latte", 3.4], ["Chai", 3.1], ["Croissant", 2.6], ["Banana bread", 2.9], ["Soup of the day", 5.5], ["Toastie", 6.2], ["Salad bowl", 7.8]]}
+home.bold={"range": "A1:C1", "on": true}
+home.fillColor={"range": "A1:C1", "color": "#DDEBF7"}
+home.borders={"range": "A1:C1", "preset": "bottom"}
+home.numberFormat={"range": "B2:C9", "format": "$#,##0.00"}
+range.setValues={"range": "E1", "values": [["Tax rate", "8%"]]}
+home.bold={"range": "E1", "on": true}
+home.fillColor={"range": "F1", "color": "#FFF2CC"}
+home.columnWidth={"cols": "A:A", "width": 120}
+home.columnWidth={"cols": "B:C", "width": 95}
+home.columnWidth={"cols": "D:D", "width": 30}
+home.columnWidth={"cols": "E:E", "width": 70}
+home.columnWidth={"cols": "F:F", "width": 60}
+
+# Members: names and phone numbers typed every which way.
+home.insertSheet={"name": "Members"}
+sheet.activate={"sheet": "Members"}
+range.setValues={"range": "A1", "parse": false, "values": [["Name", "Phone", "Clean name", "Initials", "Phone digits"], ["  maria GONZALEZ", "(555) 014-2231"], ["JAMES o'neill ", "555.014.8890"], ["li wei", "555 014 7712"], ["Sara   Khan", "555-014-3390"], ["ana lucia PEREIRA", "(555)014-6678"], ["  Kwame Mensah", "555.014.9043"]]}
+home.bold={"range": "A1:E1", "on": true}
+home.fillColor={"range": "A1:E1", "color": "#DDEBF7"}
+home.borders={"range": "A1:E1", "preset": "bottom"}
+home.columnWidth={"cols": "A:A", "width": 130}
+home.columnWidth={"cols": "B:B", "width": 110}
+home.columnWidth={"cols": "C:C", "width": 130}
+home.columnWidth={"cols": "D:D", "width": 60}
+home.columnWidth={"cols": "E:E", "width": 100}
+
+# Stock: weekly deliveries and sales of coffee beans (bags); opening stock in G1.
+home.insertSheet={"name": "Stock"}
+sheet.activate={"sheet": "Stock"}
+range.setValues={"range": "A1", "values": [["Week", "Delivered", "Sold", "Balance"], [1, 0, 34], [2, 60, 41], [3, 0, 38], [4, 60, 45], [5, 0, 52], [6, 60, 47], [7, 0, 39], [8, 120, 44]]}
+home.bold={"range": "A1:D1", "on": true}
+home.fillColor={"range": "A1:D1", "color": "#DDEBF7"}
+home.borders={"range": "A1:D1", "preset": "bottom"}
+range.setValues={"range": "F1", "values": [["Opening stock", 120], ["Reorder level", 40]]}
+home.bold={"range": "F1:F2", "on": true}
+home.fillColor={"range": "G1:G2", "color": "#FFF2CC"}
+home.columnWidth={"cols": "A:A", "width": 55}
+home.columnWidth={"cols": "B:D", "width": 75}
+home.columnWidth={"cols": "E:E", "width": 30}
+home.columnWidth={"cols": "F:F", "width": 110}
+home.columnWidth={"cols": "G:G", "width": 55}
+
+# Attendance: classes attended per member per week at a small gym.
+home.insertSheet={"name": "Attendance"}
+sheet.activate={"sheet": "Attendance"}
+range.setValues={"range": "A1", "values": [["Member", "Wk 1", "Wk 2", "Wk 3", "Wk 4", "Wk 5", "Wk 6", "Total", "Every week?"], ["Aisha", 3, 2, 3, 3, 2, 3], ["Bruno", 1, 0, 2, 1, 1, 0], ["Carmen", 2, 2, 2, 3, 2, 2], ["Dev", 0, 1, 0, 0, 1, 0], ["Erin", 3, 3, 3, 2, 3, 3], ["Felix", 2, 1, 2, 2, 1, 2], ["Gemma", 1, 2, 1, 0, 2, 1], ["Hamza", 3, 3, 2, 3, 3, 3], ["Average"]]}
+home.bold={"range": "A1:I1", "on": true}
+home.fillColor={"range": "A1:I1", "color": "#DDEBF7"}
+home.borders={"range": "A1:I1", "preset": "bottom"}
+home.bold={"range": "A10:I10", "on": true}
+home.borders={"range": "A10:I10", "preset": "top"}
+home.numberFormat={"range": "B10:G10", "format": "0.0"}
+home.columnWidth={"cols": "A:A", "width": 80}
+home.columnWidth={"cols": "B:G", "width": 50}
+home.columnWidth={"cols": "H:H", "width": 55}
+home.columnWidth={"cols": "I:I", "width": 95}
+sheet.activate={"sheet": "Orders"}
+selection.set={"range": "E2"}

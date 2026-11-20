@@ -1,0 +1,34 @@
+# Practice workbook for Chapter 17: Macros Without Code
+# Build: gridcraft-cli run --script workbooks/src/17-macros.jsonl --out workbooks/17-macros.xlsx
+#
+# Sheet 1: Orders (catering orders of a small cafe, with a button that runs FlagBigOrders)
+sheet.rename={"name":"Orders"}
+range.setValues={"range":"A1","values":[["Date","Order","Customer","Item","Amount"],["2026-11-02",1001,"Harbor Dental","Coffee box (12 cups)",38],["2026-11-02",1002,"Lane & Co Design","Pastry platter",64],["2026-11-03",1003,"Westside Library","Catering tray (20 people)",185],["2026-11-03",1004,"Greenleaf Gym","Smoothie pack",42],["2026-11-04",1005,"Harbor Dental","Coffee box (12 cups)",38],["2026-11-04",1006,"Maple Street School","Breakfast buffet",240],["2026-11-05",1007,"Lane & Co Design","Sandwich platter",96],["2026-11-05",1008,"Riverside Clinic","Coffee box (24 cups)",72],["2026-11-06",1009,"Greenleaf Gym","Smoothie pack",42],["2026-11-06",1010,"Brightway Realty","Catering tray (20 people)",185],["2026-11-09",1011,"Westside Library","Pastry platter",64],["2026-11-09",1012,"Maple Street School","Coffee box (24 cups)",72],["2026-11-10",1013,"Harbor Dental","Sandwich platter",96],["2026-11-10",1014,"Oakwood Studio","Lunch boxes (15)",165],["2026-11-11",1015,"Riverside Clinic","Pastry platter",64],["2026-11-12",1016,"Brightway Realty","Coffee box (12 cups)",38],["2026-11-12",1017,"Lane & Co Design","Catering tray (30 people)",270],["2026-11-13",1018,"Greenleaf Gym","Smoothie pack",42],["2026-11-13",1019,"Oakwood Studio","Sandwich platter",96],["2026-11-16",1020,"Westside Library","Coffee box (24 cups)",72]]}
+home.bold={"range":"A1:E1","on":true}
+home.fillColor={"range":"A1:E1","color":"#DDEBF7"}
+home.numberFormat={"range":"A2:A21","format":"Short Date"}
+home.numberFormat={"range":"E2:E21","format":"Currency"}
+home.columnWidth={"cols":"A:B","width":80}
+home.columnWidth={"cols":"C:C","width":150}
+home.columnWidth={"cols":"D:D","width":190}
+home.columnWidth={"cols":"E:E","width":80}
+view.freezeTopRow={}
+#
+# Sheet 2: Till (one day's raw till export, left unformatted on purpose: record FormatTill here)
+home.insertSheet={"name":"Till","before":1}
+sheet.activate={"sheet":"Till"}
+range.setValues={"range":"A1","values":[["Date","Item","Qty","Price","Total"],["2026-11-16","Latte",14,4.5,"=C2*D2"],["2026-11-16","Cappuccino",11,4.25,"=C3*D3"],["2026-11-16","Americano",9,3.5,"=C4*D4"],["2026-11-16","Flat white",7,4.25,"=C5*D5"],["2026-11-16","Tea",6,3,"=C6*D6"],["2026-11-16","Hot chocolate",5,4,"=C7*D7"],["2026-11-16","Croissant",12,3.25,"=C8*D8"],["2026-11-16","Blueberry muffin",8,3.5,"=C9*D9"],["2026-11-16","Bagel",6,3.75,"=C10*D10"],["2026-11-16","Banana bread",4,3.95,"=C11*D11"]]}
+#
+# Sheet 3: Till Nov 17 (a longer export, 14 rows, to test the recorded macro on more rows)
+home.insertSheet={"name":"Till Nov 17","before":2}
+sheet.activate={"sheet":"Till Nov 17"}
+range.setValues={"range":"A1","values":[["Date","Item","Qty","Price","Total"],["2026-11-17","Latte",16,4.5,"=C2*D2"],["2026-11-17","Cappuccino",10,4.25,"=C3*D3"],["2026-11-17","Americano",12,3.5,"=C4*D4"],["2026-11-17","Flat white",8,4.25,"=C5*D5"],["2026-11-17","Tea",5,3,"=C6*D6"],["2026-11-17","Hot chocolate",7,4,"=C7*D7"],["2026-11-17","Iced latte",4,4.75,"=C8*D8"],["2026-11-17","Croissant",15,3.25,"=C9*D9"],["2026-11-17","Blueberry muffin",9,3.5,"=C10*D10"],["2026-11-17","Bagel",7,3.75,"=C11*D11"],["2026-11-17","Banana bread",6,3.95,"=C12*D12"],["2026-11-17","Cheese toastie",9,6.5,"=C13*D13"],["2026-11-17","Soup of the day",6,5.75,"=C14*D14"],["2026-11-17","Orange juice",8,3.25,"=C15*D15"]]}
+#
+# Macros (GridCraft step macros, stored in the workbook)
+macro.save={"macro":{"name":"FlagBigOrders","description":"Highlights every order over $100 (yellow fill, bold)","inputs":[{"name":"Orders","kind":"range","header":true,"cols":[5,5],"colTypes":["date","number","text","text","number"]}],"steps":[{"type":"repeat","over":"Orders.data","of":"rows","max":1000,"body":[{"type":"if","cell":"Row.cell(1,5)","op":"gt","value":100,"then":[{"type":"command","id":"home.fillColor","params":{"range":"Row","color":"#FFF2CC"}},{"type":"command","id":"home.bold","params":{"range":"Row","on":true}}]}]}]}}
+macro.save={"macro":{"name":"AddTotal","description":"Writes a Total row under the orders","inputs":[{"name":"Orders","kind":"range","header":true,"cols":[5,5],"colTypes":["date","number","text","text","number"]}],"output":{"anchor":"Orders.below(1).cell(1,4)","onConflict":"ask"},"steps":[{"type":"command","id":"cell.set","params":{"cell":"Output","input":"Total"}},{"type":"command","id":"cell.set","params":{"cell":"Output.offset(0,1)","input":"=SUM({{Orders.data.col(\"Amount\")}})"}},{"type":"command","id":"home.numberFormat","params":{"range":"Output.offset(0,1)","format":"Currency"}},{"type":"command","id":"home.bold","params":{"range":"Output.resize(1,2)","on":true}}]}}
+#
+# Back to Orders: a form button that runs FlagBigOrders on the order list
+sheet.activate={"sheet":"Orders"}
+insert.button={"at":"G2","width":130,"height":30,"text":"Flag big orders","macro":"FlagBigOrders","input":"A1:E21"}
+selection.set={"range":"A1"}

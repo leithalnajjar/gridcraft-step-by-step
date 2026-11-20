@@ -1,0 +1,86 @@
+# 23-dashboard.xlsx: the finished sales dashboard for chapter 23 (runs on top of the starter)
+# build: gridcraft-cli run --in workbooks/23-dashboard-start.xlsx --script workbooks/src/23-dashboard.jsonl --out workbooks/23-dashboard.xlsx
+# 1. the raw data becomes a table called Orders
+insert.table={"range": "A1:H343", "name": "Orders", "style": "TableStyleMedium2"}
+# 2. a PivotTable on a new sheet (Insert > PivotTable puts it at A3 of a new sheet), renamed Dashboard
+selection.set={"range": "B5"}
+insert.pivotTable={}
+sheet.rename={"name": "Dashboard"}
+pivot.addField={"field": "Date", "area": "rows"}
+pivot.group={"field": "Date", "by": "months"}
+pivot.addField={"field": "Channel", "area": "columns"}
+pivot.addField={"field": "Sales", "area": "values"}
+# move it out of the way: 40 rows above it and one column to its left
+home.insertRows={"rows": "1:40"}
+home.insertColumns={"cols": "A:A"}
+pivot.refresh={}
+# 3. layout grid, title and five KPI tiles
+home.columnWidth={"cols": "A:A", "chars": 2}
+home.columnWidth={"cols": "B:K", "chars": 13}
+range.setValues={"range": "B2", "values": [["Pinecone Candle Co.: Sales Dashboard"], ["Orders from January to September 2026. Data: the Orders table on the Data sheet."]]}
+home.fontSize={"range": "B2", "size": 20}
+home.bold={"range": "B2", "on": true}
+home.fontColor={"range": "B2", "color": "#1F3864"}
+home.fontColor={"range": "B3", "color": "#7F7F7F"}
+range.setValues={"range": "B5", "values": [["Total sales", null, "Orders", null, "Average order", null, "Best month", null, "Top product", null], ["=SUM(Orders[Sales])", null, "=COUNTA(UNIQUE(Orders[Order ID]))", null, "=B6/D6", null, "=INDEX(GROUPBY(TEXT(Orders[Date],\"mmmm\"),Orders[Sales],SUM,0,0,-2),1,1)", null, "=INDEX(GROUPBY(Orders[Product],Orders[Sales],SUM,0,0,-2),1,1)", null]]}
+home.mergeCells={"range": "B5:C5"}
+home.mergeCells={"range": "D5:E5"}
+home.mergeCells={"range": "F5:G5"}
+home.mergeCells={"range": "H5:I5"}
+home.mergeCells={"range": "J5:K5"}
+home.mergeCells={"range": "B6:C6"}
+home.mergeCells={"range": "D6:E6"}
+home.mergeCells={"range": "F6:G6"}
+home.mergeCells={"range": "H6:I6"}
+home.mergeCells={"range": "J6:K6"}
+home.fillColor={"range": "B5:K6", "color": "#EEF3F9"}
+home.fillColor={"range": "D5:E6", "color": "#DCE6F2"}
+home.fillColor={"range": "H5:I6", "color": "#DCE6F2"}
+home.fontColor={"range": "B5:K5", "color": "#595959"}
+home.alignCenter={"range": "B5:K6"}
+home.alignMiddle={"range": "B5:K6"}
+home.fontSize={"range": "B6:G6", "size": 20}
+home.fontSize={"range": "H6:K6", "size": 14}
+home.bold={"range": "B6:K6", "on": true}
+home.fontColor={"range": "B6:K6", "color": "#1F3864"}
+home.numberFormat={"range": "B6", "code": "$#,##0"}
+home.numberFormat={"range": "F6", "code": "$#,##0.00"}
+home.rowHeight={"rows": "5:5", "height": 26}
+home.rowHeight={"rows": "6:6", "height": 44}
+# 4. helper area under the dashboard: the PivotTable (now at B43) and a product summary
+range.setValues={"range": "B41", "values": [["Helper area: the PivotTable and the product summary below feed the charts and sparklines above."]]}
+home.bold={"range": "B41", "on": true}
+home.fontColor={"range": "B41", "color": "#7F7F7F"}
+range.setValues={"range": "H43", "values": [["Product", "Sales"]]}
+home.bold={"range": "H43:I43", "on": true}
+cell.set={"cell": "H44", "input": "=GROUPBY(Orders[Product],Orders[Sales],SUM,0,0,2)"}
+home.numberFormat={"range": "I44:I60", "code": "$#,##0"}
+# 5. channel table with sparklines (trend data: the PivotTable's channel columns)
+range.setValues={"range": "H24", "values": [["Channel", "Sales", "Share", "Trend"], ["Market stall", "=SUMIFS(Orders[Sales],Orders[Channel],H25)", "=I25/$B$6"], ["Online shop", "=SUMIFS(Orders[Sales],Orders[Channel],H26)", "=I26/$B$6"], ["Wholesale", "=SUMIFS(Orders[Sales],Orders[Channel],H27)", "=I27/$B$6"]]}
+home.cellStyle={"range": "H24:K24", "name": "Heading 3"}
+home.alignRight={"range": "I24:J24"}
+home.alignCenter={"range": "K24"}
+home.numberFormat={"range": "I25:I27", "code": "$#,##0"}
+home.numberFormat={"range": "J25:J27", "code": "0%"}
+home.rowHeight={"rows": "25:27", "height": 30}
+home.alignMiddle={"range": "H25:K27"}
+home.borders={"range": "H25:K27", "preset": "insideHorizontal", "style": "thin", "color": "#D9D9D9"}
+insert.sparkline={"range": "C45:C53", "location": "K25", "type": "line", "markers": true}
+insert.sparkline={"range": "D45:D53", "location": "K26", "type": "line", "markers": true}
+insert.sparkline={"range": "E45:E53", "location": "K27", "type": "line", "markers": true}
+cell.set={"cell": "H30", "input": "To add orders: paste them under the Orders table on the Data sheet and choose Table Design > Resize Table. Then unprotect this sheet, refresh the PivotTable and protect the sheet again."}
+home.mergeCells={"range": "H30:K33"}
+home.wrapText={"range": "H30:K33", "on": true}
+home.alignTop={"range": "H30:K33"}
+home.italic={"range": "H30", "on": true}
+home.fontColor={"range": "H30", "color": "#7F7F7F"}
+# 6. three charts: a PivotChart, a doughnut from the channel table, a bar chart from the product summary
+insert.pivotChart={"pivot": "B43", "type": "column", "subtype": "stacked", "title": "Monthly sales by channel", "at": "B8", "width": 576, "height": 300}
+insert.chart={"range": "H24:I27", "type": "doughnut", "title": "Share of sales by channel", "at": "H8", "width": 384, "height": 300}
+insert.chart={"range": "H44:I52", "type": "bar", "subtype": "clustered", "title": "Sales by product", "at": "B24", "width": 576, "height": 320}
+chart.set={"chart": 4, "legend": "none"}
+# 7. a clean look, then protect the dashboard
+view.gridlines={"on": false}
+view.headings={"on": false}
+selection.set={"range": "A1"}
+review.protectSheet={}

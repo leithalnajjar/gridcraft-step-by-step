@@ -1,0 +1,99 @@
+# 08-text-and-dates.xlsx: a gym's messy member list, a cafe timesheet, memberships and a project schedule (Chapter 8)
+# build: gridcraft-cli run --script workbooks/src/08-text-and-dates.jsonl --out workbooks/08-text-and-dates.xlsx
+
+# Customers: a messy member list exported from an old system. Columns G onwards are for the reader.
+sheet.rename={"sheet": "Sheet1", "name": "Customers"}
+sheet.activate={"sheet": "Customers"}
+range.setValues={"range": "A1", "values": [["Name", "Email", "Phone", "City, Country", "Member ID"], ["  maria GONZALEZ", " Maria.Gonzalez@Example.com", "(555) 014-2231", "Lyon, France", "GYM-2024-0153"], ["JAMES o'neill ", "james.oneill@example.com", "555.014.8890", "Dublin, Ireland", "GYM-2025-0418"], ["li wei", "LI.WEI@EXAMPLE.COM", "555 014 7712", "Singapore, Singapore", "GYM-2023-0027"], ["Sara   Khan", "sara.khan@example", "555-014-3390", "Leeds, United Kingdom", "GYM-2026-0602"], ["tom BAKER", "tom.baker@example.com", "(555) 014 5521", "Toronto, Canada", "GYM-2025-0231"], ["ana lucia PEREIRA", "ana.pereira@example.com", "5550146678", "Porto, Portugal", "GYM-2024-0877"], ["  Kwame Mensah", "kwame.mensah@example.com", "555.014.9043", "Accra, Ghana", "GYM-2026-0119"], ["ELENA petrova", "elena.petrova@example.com", "555 014 2208", "Sofia, Bulgaria", "GYM-2022-0764"], ["diego  RAMIREZ ", "diego.ramirez@@example.com", "(555)014-6612", "Valencia, Spain", "GYM-2025-0950"], ["Hannah Schmidt", "hannah.schmidt@example.com", "555-014-1187", "Graz, Austria", "GYM-2023-0345"]], "parse": false}
+range.setValues={"range": "F1", "values": [["Joined"], ["3/14/2024"], ["1/9/2025"], ["6/2/2023"], ["2/20/2026"], ["7/30/2025"], ["11/5/2024"], ["1/17/2026"], ["9/12/2022"], ["10/1/2025"], ["4/24/2023"]]}
+range.setValues={"range": "G1", "values": [["Clean name", "First name", "Last name", "Email (clean)", "Email OK?", "Phone digits", "Phone", "City", "Country", "Years"]]}
+home.bold={"range": "A1:F1", "on": true}
+home.fillColor={"range": "A1:F1", "color": "#DDEBF7"}
+home.borders={"range": "A1:F1", "preset": "bottom"}
+home.bold={"range": "G1:P1", "on": true}
+home.fillColor={"range": "G1:P1", "color": "#DDEBF7"}
+home.borders={"range": "G1:P1", "preset": "bottom"}
+home.fillColor={"range": "G1:P1", "color": "#E2EFDA"}
+home.numberFormat={"range": "F2:F11", "format": "d mmm yyyy"}
+home.columnWidth={"cols": "A:A", "width": 130}
+home.columnWidth={"cols": "B:B", "width": 200}
+home.columnWidth={"cols": "C:C", "width": 110}
+home.columnWidth={"cols": "D:D", "width": 150}
+home.columnWidth={"cols": "E:E", "width": 115}
+home.columnWidth={"cols": "F:F", "width": 90}
+home.columnWidth={"cols": "G:G", "width": 130}
+home.columnWidth={"cols": "H:I", "width": 80}
+home.columnWidth={"cols": "J:J", "width": 190}
+home.columnWidth={"cols": "K:K", "width": 75}
+home.columnWidth={"cols": "L:L", "width": 95}
+home.columnWidth={"cols": "M:M", "width": 110}
+home.columnWidth={"cols": "N:N", "width": 80}
+home.columnWidth={"cols": "O:O", "width": 110}
+home.columnWidth={"cols": "P:P", "width": 50}
+
+# Timesheet: one week at the Copper Kettle cafe. Hours and Overtime are left for the reader.
+home.insertSheet={"name": "Timesheet"}
+sheet.activate={"sheet": "Timesheet"}
+range.setValues={"range": "A1", "values": [["Date", "Employee", "Start", "End", "Break (min)", "Hours", "Overtime"], ["11/16/2026", "Mia", "7:00 AM", "3:30 PM", 30], ["11/16/2026", "Omar", "11:00 AM", "7:45 PM", 45], ["11/17/2026", "Mia", "7:00 AM", "4:15 PM", 30], ["11/17/2026", "Omar", "12:00 PM", "8:00 PM", 30], ["11/18/2026", "Mia", "6:30 AM", "3:00 PM", 30], ["11/18/2026", "Omar", "11:30 AM", "9:15 PM", 45], ["11/19/2026", "Mia", "7:00 AM", "3:30 PM", 30], ["11/19/2026", "Omar", "10:00 PM", "6:00 AM", 30], ["11/20/2026", "Mia", "7:00 AM", "5:00 PM", 60], ["11/20/2026", "Omar", "12:00 PM", "8:30 PM", 30], ["Total"]]}
+home.bold={"range": "A1:G1", "on": true}
+home.fillColor={"range": "A1:G1", "color": "#DDEBF7"}
+home.borders={"range": "A1:G1", "preset": "bottom"}
+home.bold={"range": "A12:G12", "on": true}
+home.borders={"range": "A12:G12", "preset": "top"}
+home.numberFormat={"range": "A2:A11", "format": "ddd d mmm"}
+home.numberFormat={"range": "C2:D11", "format": "h:mm AM/PM"}
+home.numberFormat={"range": "F2:G12", "format": "0.00"}
+range.setValues={"range": "I1", "values": [["Standard day (hours)", 8]]}
+home.bold={"range": "I1", "on": true}
+home.columnWidth={"cols": "A:A", "width": 95}
+home.columnWidth={"cols": "B:B", "width": 75}
+home.columnWidth={"cols": "C:D", "width": 80}
+home.columnWidth={"cols": "E:E", "width": 80}
+home.columnWidth={"cols": "F:G", "width": 75}
+home.columnWidth={"cols": "H:H", "width": 30}
+home.columnWidth={"cols": "I:I", "width": 140}
+home.columnWidth={"cols": "J:J", "width": 50}
+
+# Memberships: start dates and plan lengths, measured against a fixed report date in B1.
+home.insertSheet={"name": "Memberships"}
+sheet.activate={"sheet": "Memberships"}
+range.setValues={"range": "A1", "values": [["Report date", "11/20/2026"]]}
+home.bold={"range": "A1", "on": true}
+home.fillColor={"range": "B1", "color": "#FFF2CC"}
+home.numberFormat={"range": "B1", "format": "d mmm yyyy"}
+range.setValues={"range": "A3", "values": [["Member", "Start", "Months", "Ends", "Days left", "Status", "First invoice due"], ["Maria Gonzalez", "1/31/2026", 12], ["James O'Neill", "8/31/2026", 6], ["Li Wei", "9/15/2026", 3], ["Sara Khan", "2/20/2026", 12], ["Tom Baker", "10/1/2026", 1], ["Ana Lucia Pereira", "5/18/2026", 6], ["Kwame Mensah", "11/2/2026", 12], ["Elena Petrova", "7/7/2026", 6]]}
+home.bold={"range": "A3:G3", "on": true}
+home.fillColor={"range": "A3:G3", "color": "#DDEBF7"}
+home.borders={"range": "A3:G3", "preset": "bottom"}
+home.numberFormat={"range": "B4:B11", "format": "d mmm yyyy"}
+home.numberFormat={"range": "D4:D11", "format": "d mmm yyyy"}
+home.numberFormat={"range": "G4:G11", "format": "d mmm yyyy"}
+home.columnWidth={"cols": "A:A", "width": 130}
+home.columnWidth={"cols": "B:B", "width": 95}
+home.columnWidth={"cols": "C:C", "width": 60}
+home.columnWidth={"cols": "D:D", "width": 95}
+home.columnWidth={"cols": "E:F", "width": 75}
+home.columnWidth={"cols": "G:G", "width": 120}
+
+# Schedule: a cafe refit, planned in working days, with the days the office is closed.
+home.insertSheet={"name": "Schedule"}
+sheet.activate={"sheet": "Schedule"}
+range.setValues={"range": "A1", "values": [["Task", "Start", "Working days", "Finish"], ["Order the new counter", "11/23/2026", 5], ["Remove the old counter", "12/3/2026", 2], ["Install counter and sinks", "12/7/2026", 8], ["Paint and tidy up", "12/17/2026", 4], ["Reopen", "12/28/2026", 0]]}
+home.bold={"range": "A1:D1", "on": true}
+home.fillColor={"range": "A1:D1", "color": "#DDEBF7"}
+home.borders={"range": "A1:D1", "preset": "bottom"}
+home.numberFormat={"range": "B2:B6", "format": "ddd d mmm yyyy"}
+home.numberFormat={"range": "D2:D6", "format": "ddd d mmm yyyy"}
+range.setValues={"range": "F1", "values": [["Closed (holidays)"], ["11/26/2026"], ["11/27/2026"], ["12/24/2026"], ["12/25/2026"], ["1/1/2027"]]}
+home.bold={"range": "F1:F1", "on": true}
+home.fillColor={"range": "F1:F1", "color": "#DDEBF7"}
+home.borders={"range": "F1:F1", "preset": "bottom"}
+home.numberFormat={"range": "F2:F6", "format": "ddd d mmm yyyy"}
+home.columnWidth={"cols": "A:A", "width": 175}
+home.columnWidth={"cols": "B:B", "width": 120}
+home.columnWidth={"cols": "C:C", "width": 95}
+home.columnWidth={"cols": "D:D", "width": 120}
+home.columnWidth={"cols": "E:E", "width": 30}
+home.columnWidth={"cols": "F:F", "width": 130}
+sheet.activate={"sheet": "Customers"}
+selection.set={"range": "G2"}

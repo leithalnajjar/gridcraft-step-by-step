@@ -1,0 +1,64 @@
+# 03-first-workbook.xlsx: Harbor Lane Cafe, one week of expenses, plus AutoFill, typing and Flash Fill practice (Chapter 3)
+# build: gridcraft-cli run --script workbooks/src/03-first-workbook.jsonl --out workbooks/03-first-workbook.xlsx
+
+# Sheet 1: the finished Weekly Expenses sheet the chapter builds.
+sheet.rename={"sheet": "Sheet1", "name": "Expenses"}
+sheet.activate={"sheet": "Expenses"}
+range.setValues={"range": "A1", "values": [["Harbor Lane Café: Weekly Expenses"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Date", "Day", "Category", "Description", "Amount", "Paid with"]]}
+home.bold={"range": "A3:F3", "on": true}
+range.setValues={"range": "A4", "values": [["11/2/2026", "Mon", "Supplies", "Coffee beans (5 kg)", "$86.50", "Card"], ["11/2/2026", "Mon", "Supplies", "Milk and oat milk", "$42.80", "Card"], ["11/3/2026", "Tue", "Utilities", "Electricity bill", "$128.40", "Bank transfer"], ["11/3/2026", "Tue", "Repairs", "Grinder blade", "$35.00", "Cash"], ["11/4/2026", "Wed", "Supplies", "Paper cups (500)", "$39.90", "Card"], ["11/5/2026", "Thu", "Marketing", "Flyers for open mic night", "$24.00", "Card"], ["11/5/2026", "Thu", "Supplies", "Pastries from bakery", "$64.25", "Cash"], ["11/6/2026", "Fri", "Cleaning", "Cleaning products", "$18.75", "Card"], ["11/7/2026", "Sat", "Supplies", "Milk and oat milk", "$41.60", "Card"], ["11/8/2026", "Sun", "Staff", "Pizza for weekend team", "$27.50", "Cash"]]}
+range.setValues={"range": "D14", "values": [["Total", "=SUM(E4:E13)"]]}
+home.bold={"range": "D14:E14", "on": true}
+home.numberFormat={"range": "E14", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 90}
+home.columnWidth={"cols": "B:B", "width": 50}
+home.columnWidth={"cols": "C:C", "width": 90}
+home.columnWidth={"cols": "D:D", "width": 190}
+home.columnWidth={"cols": "E:E", "width": 80}
+home.columnWidth={"cols": "F:F", "width": 110}
+selection.set={"range": "A4"}
+
+# Sheet 2: AutoFill practice. Starting values in row 3; the reader drags each fill handle down to row 14.
+home.insertSheet={"name": "Fill Practice"}
+sheet.activate={"sheet": "Fill Practice"}
+range.setValues={"range": "A1", "values": [["AutoFill practice: select the starting cell (or both cells in E3:E4), then drag the fill handle down to row 14."]]}
+home.bold={"range": "A1", "on": true}
+range.setValues={"range": "A2", "values": [["Days", "Months", "Quarters", "Labels", "Step of 5", "Dates", "Weekdays only", "One number"]]}
+home.bold={"range": "A2:H2", "on": true}
+range.setValues={"range": "A3", "values": [["Mon", "Jan", "Q1", "Item 1", 5, "11/2/2026", "11/2/2026", 100]]}
+range.setValues={"range": "E4", "values": [[10]]}
+home.columnWidth={"cols": "A:E", "width": 80}
+home.columnWidth={"cols": "F:H", "width": 100}
+selection.set={"range": "A3"}
+
+# Sheet 3: Typing practice. Column A shows what to type, column C what GridCraft should show.
+home.insertSheet={"name": "Typing Practice"}
+sheet.activate={"sheet": "Typing Practice"}
+range.setValues={"range": "A1", "values": [["Type exactly what column A shows into column B, press Enter, and compare with column C."]]}
+home.bold={"range": "A1", "on": true}
+range.setValues={"range": "A3", "values": [["Type this", "Type it here", "You should see", "What GridCraft stored"], ["1/2", null, "2-Jan", "a date: January 2 of this year"], ["50%", null, "50%", "the number 0.5, shown as a percentage"], ["$1,200", null, "$1,200", "the number 1200, shown as currency"], ["3:30 PM", null, "3:30 PM", "a time of day"], ["11/2/2026", null, "11/2/2026", "the date November 2, 2026"], ["Nov 2, 2026", null, "2-Nov-26", "the same date, in a shorter display"], ["(25)", null, "-25", "a negative number"], ["1 1/2", null, "1 1/2", "the number 1.5, shown as a fraction"], ["00123", null, "123", "a number: the leading zeros are dropped"], ["'00123", null, "00123", "text: the apostrophe keeps the zeros"]]}
+range.setValues={"range": "A4", "values": [["1/2"], ["50%"], ["$1,200"], ["3:30 PM"], ["11/2/2026"], ["Nov 2, 2026"], ["(25)"], ["1 1/2"], ["00123"], ["'00123"]], "parse": false}
+range.setValues={"range": "C4", "values": [["2-Jan"], ["50%"], ["$1,200"], ["3:30 PM"], ["11/2/2026"], ["2-Nov-26"], ["-25"], ["1 1/2"], ["123"], ["00123"]], "parse": false}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "B4:B13", "color": "#FFF2CC"}
+home.borders={"range": "B4:B13", "preset": "all"}
+home.columnWidth={"cols": "A:A", "width": 100}
+home.columnWidth={"cols": "B:B", "width": 100}
+home.columnWidth={"cols": "C:C", "width": 110}
+home.columnWidth={"cols": "D:D", "width": 290}
+selection.set={"range": "B4"}
+
+# Sheet 4: Flash Fill practice. Supplier contacts; column B is left for the reader.
+home.insertSheet={"name": "Flash Fill"}
+sheet.activate={"sheet": "Flash Fill"}
+range.setValues={"range": "A1", "values": [["Contact", "First name", "Email"], ["Dana Whitfield", null, "dana.whitfield@northroast.example"], ["Omar Haddad", null, "omar@harborbakery.example"], ["Lucy Brennan", null, "lucy.b@greenleafdairy.example"], ["Kenji Mori", null, "kmori@paperworks.example"], ["Sofia Alvarez", null, "sofia.alvarez@cleanco.example"], ["Tom Becker", null, "tom@printhouse.example"], ["Priya Nair", null, "priya.nair@spicetrade.example"], ["Jonas Lindqvist", null, "jonas.l@coldbrew.example"], ["Mei Chen", null, "mei@teaimporters.example"], ["Samuel Osei", null, "s.osei@freshproduce.example"]]}
+home.bold={"range": "A1:C1", "on": true}
+home.columnWidth={"cols": "A:A", "width": 120}
+home.columnWidth={"cols": "B:B", "width": 110}
+home.columnWidth={"cols": "C:C", "width": 250}
+selection.set={"range": "B2"}
+
+sheet.activate={"sheet": "Expenses"}

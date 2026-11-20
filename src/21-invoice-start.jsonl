@@ -1,0 +1,25 @@
+# 21-invoice-start.xlsx: a small design studio's price list and client list for chapter 21
+# build: gridcraft-cli run --script workbooks/src/21-invoice-start.jsonl --out workbooks/21-invoice-start.xlsx
+sheet.rename={"name": "Products"}
+range.setValues={"range": "A1", "values": [["Code", "Item", "Unit", "Price"], ["LOGO-01", "Logo design", "project", 450], ["BRAND-01", "Brand style guide", "project", 680], ["CARD-250", "Business cards (250)", "box", 85], ["FLY-500", "A5 flyers (500)", "pack", 140], ["POS-A2", "A2 poster print", "each", 18.5], ["BAN-01", "Roll-up banner", "each", 165], ["WEB-01", "Web page design", "page", 220], ["SOC-10", "Social media set (10 posts)", "set", 160], ["MENU-01", "Menu design (A4)", "project", 190], ["STK-100", "Stickers (100)", "pack", 38], ["PHOTO-HR", "Photo editing", "hour", 45], ["DESIGN-HR", "Design work", "hour", 55]]}
+insert.table={"range": "A1:D13", "name": "Products", "style": "TableStyleMedium2"}
+home.numberFormat={"range": "D2:D13", "code": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "chars": 12}
+home.columnWidth={"cols": "B:B", "chars": 28}
+home.columnWidth={"cols": "C:C", "chars": 9}
+home.columnWidth={"cols": "D:D", "chars": 10}
+home.insertSheet={"name": "Clients", "before": 1}
+sheet.activate={"sheet": "Clients"}
+range.setValues={"range": "A1", "values": [["Client", "Contact", "Street", "City", "Email", "Terms", "Discount"], ["Café Lumen", "Nora Bell", "4 Market Street", "Riverton", "nora@cafelumen.example", 14, 0], ["Greenleaf Yoga", "Sam Ortiz", "22 Elm Road", "Riverton", "sam@greenleafyoga.example", 30, 0.05], ["Harbor Bikes", "Jon Park", "9 Quay Side", "Port Allen", "jon@harborbikes.example", 30, 0], ["Maple & Co. Bakery", "Lisa Grant", "61 Mill Lane", "Riverton", "lisa@maplebakery.example", 14, 0.1], ["Northwind Dental", "Amira Haddad", "300 Station Road", "Elmford", "office@northwinddental.example", 30, 0], ["Riverton Theatre Club", "Ben Cole", "2 Bridge Street", "Riverton", "ben@rivertontheatre.example", 30, 0.15], ["Sunrise Florist", "Mia Wong", "140 High Street", "Elmford", "mia@sunriseflorist.example", 14, 0], ["Tidewater Books", "Leo Hart", "77 Canal Road", "Port Allen", "leo@tidewaterbooks.example", 30, 0.05]]}
+insert.table={"range": "A1:G9", "name": "Clients", "style": "TableStyleMedium2"}
+home.numberFormat={"range": "G2:G9", "code": "0%"}
+home.columnWidth={"cols": "A:A", "chars": 22}
+home.columnWidth={"cols": "B:B", "chars": 14}
+home.columnWidth={"cols": "C:C", "chars": 17}
+home.columnWidth={"cols": "D:D", "chars": 11}
+home.columnWidth={"cols": "E:E", "chars": 31}
+home.columnWidth={"cols": "F:F", "chars": 8}
+home.columnWidth={"cols": "G:G", "chars": 10}
+selection.set={"range": "A1"}
+sheet.activate={"sheet": "Products"}
+selection.set={"range": "A1"}

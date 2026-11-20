@@ -1,0 +1,94 @@
+# 04-formatting.xlsx: Maple Street Bakery, October 2026 sales by product, unformatted, plus practice sheets (Chapter 4)
+# build: gridcraft-cli run --script workbooks/src/04-formatting.jsonl --out workbooks/04-formatting.xlsx
+
+# Sheet 1: the raw sales report the chapter formats step by step. No formatting at all on purpose.
+sheet.rename={"sheet": "Sheet1", "name": "Sales"}
+sheet.activate={"sheet": "Sales"}
+range.setValues={"range": "A1", "values": [["Maple Street Bakery: October 2026 Sales by Product"]]}
+range.setValues={"range": "A3", "values": [["Product", "Category", "Units sold", "Unit price", "Revenue", "Change vs September", "On the menu since"], ["Sourdough loaf", "Bread", 412, 6.5, "=C4*D4", 0.082, "3/14/2019"], ["Rye loaf", "Bread", 186, 7.25, "=C5*D5", -0.041, "9/2/2020"], ["Baguette", "Bread", 538, 3.2, "=C6*D6", 0.125, "3/14/2019"], ["Croissant", "Pastry", 1240, 2.8, "=C7*D7", 0.064, "5/1/2019"], ["Pain au chocolat", "Pastry", 870, 3.1, "=C8*D8", 0.018, "5/1/2019"], ["Cinnamon roll", "Pastry", 655, 3.6, "=C9*D9", -0.112, "11/15/2021"], ["Blueberry muffin", "Cake", 402, 2.9, "=C10*D10", 0.037, "6/7/2022"], ["Carrot cake slice", "Cake", 214, 4.75, "=C11*D11", 0.205, "2/20/2023"], ["Lemon tart", "Cake", 168, 4.2, "=C12*D12", -0.026, "7/11/2024"], ["Oat cookie", "Biscuit", 960, 1.5, "=C13*D13", 0.091, "1/9/2025"], ["Brownie", "Biscuit", 590, 2.6, "=C14*D14", 0.143, "4/3/2025"], ["Cheese scone", "Savory", 310, 2.95, "=C15*D15", -0.008, "10/6/2026"], ["Total", null, "=SUM(C4:C15)", null, "=SUM(E4:E15)", null, null]]}
+# Typing a date applies a date format; clear it so the sheet starts as plain General numbers.
+home.numberFormat={"range": "G4:G15", "format": "General"}
+selection.set={"range": "A1"}
+
+# Sheet 2: the finished version, for comparison. Same data, formatted as the chapter describes.
+sheet.move={"sheet": "Sales", "to": 1, "copy": true}
+sheet.rename={"sheet": 1, "name": "Finished"}
+sheet.activate={"sheet": "Finished"}
+home.fontSize={"range": "A1", "size": 16}
+home.bold={"range": "A1", "on": true}
+home.fontColor={"range": "A1", "color": "#1F4E79"}
+home.formatCells={"range": "A1:G1", "style": {"align": {"h": "CenterAcross"}}}
+home.bold={"range": "A3:G3", "on": true}
+home.fillColor={"range": "A3:G3", "color": "#1F4E79"}
+home.fontColor={"range": "A3:G3", "color": "#FFFFFF"}
+home.wrapText={"range": "A3:G3", "on": true}
+home.alignCenter={"range": "B3:G3"}
+home.alignMiddle={"range": "A3:G3"}
+home.numberFormat={"range": "C4:C16", "format": "#,##0"}
+home.numberFormat={"range": "D4:D15", "format": "Currency"}
+home.accounting={"range": "E4:E16", "symbol": "$"}
+home.numberFormat={"range": "F4:F15", "format": "0.0%;[Red]-0.0%"}
+home.numberFormat={"range": "G4:G15", "format": "d mmm yyyy"}
+home.alignCenter={"range": "B4:B15"}
+home.borders={"range": "A4:G15", "preset": "insideHorizontal", "style": "thin", "color": "#BFBFBF"}
+home.cellStyle={"range": "A16:G16", "name": "Total"}
+home.columnWidth={"cols": "A:A", "width": 140}
+home.columnWidth={"cols": "B:B", "width": 75}
+home.columnWidth={"cols": "C:D", "width": 80}
+home.columnWidth={"cols": "E:E", "width": 105}
+home.columnWidth={"cols": "F:G", "width": 100}
+home.rowHeight={"rows": "3:3", "points": 32}
+view.freezePanes={"cell": "A4"}
+selection.set={"range": "A4"}
+
+# Sheet 3: Paste Special practice (Multiply and Values).
+home.insertSheet={"name": "Price Update"}
+sheet.activate={"sheet": "Price Update"}
+range.setValues={"range": "A1", "values": [["Price update: raise every price by 5% with Paste Special, then freeze the menu labels as values."]]}
+home.bold={"range": "A1", "on": true}
+range.setValues={"range": "A3", "values": [["Product", "Price", "Menu label", null, "Multiply by"], ["Sourdough loaf", 6.5, "=A4&\": $\"&TEXT(B4,\"0.00\")", null, 1.05], ["Rye loaf", 7.25, "=A5&\": $\"&TEXT(B5,\"0.00\")"], ["Baguette", 3.2, "=A6&\": $\"&TEXT(B6,\"0.00\")"], ["Croissant", 2.8, "=A7&\": $\"&TEXT(B7,\"0.00\")"], ["Pain au chocolat", 3.1, "=A8&\": $\"&TEXT(B8,\"0.00\")"], ["Cinnamon roll", 3.6, "=A9&\": $\"&TEXT(B9,\"0.00\")"], ["Blueberry muffin", 2.9, "=A10&\": $\"&TEXT(B10,\"0.00\")"], ["Carrot cake slice", 4.75, "=A11&\": $\"&TEXT(B11,\"0.00\")"], ["Lemon tart", 4.2, "=A12&\": $\"&TEXT(B12,\"0.00\")"], ["Oat cookie", 1.5, "=A13&\": $\"&TEXT(B13,\"0.00\")"], ["Brownie", 2.6, "=A14&\": $\"&TEXT(B14,\"0.00\")"], ["Cheese scone", 2.95, "=A15&\": $\"&TEXT(B15,\"0.00\")"]]}
+home.bold={"range": "A3:E3", "on": true}
+home.numberFormat={"range": "B4:B15", "format": "$#,##0.00"}
+home.fillColor={"range": "E4", "color": "#FFF2CC"}
+home.columnWidth={"cols": "A:A", "width": 130}
+home.columnWidth={"cols": "B:B", "width": 70}
+home.columnWidth={"cols": "C:C", "width": 190}
+home.columnWidth={"cols": "D:D", "width": 30}
+home.columnWidth={"cols": "E:E", "width": 90}
+selection.set={"range": "E4"}
+
+# Sheet 4: Transpose practice. A weekly opening and closing rota, one row per day.
+home.insertSheet={"name": "Rota"}
+sheet.activate={"sheet": "Rota"}
+range.setValues={"range": "A1", "values": [["Weekly rota: copy A3:C10 and paste it transposed at A13, so the days run across the top."]]}
+home.bold={"range": "A1", "on": true}
+range.setValues={"range": "A3", "values": [["Day", "Opening", "Closing"], ["Mon", "Priya", "Tom"], ["Tue", "Tom", "Jonas"], ["Wed", "Mei", "Priya"], ["Thu", "Jonas", "Sam"], ["Fri", "Priya", "Mei"], ["Sat", "Sam", "Tom"], ["Sun", "Mei", "Jonas"]]}
+home.bold={"range": "A3:C3", "on": true}
+home.fillColor={"range": "A3:C3", "color": "#E2EFDA"}
+home.borders={"range": "A3:C10", "preset": "all", "style": "thin"}
+home.columnWidth={"cols": "A:I", "width": 70}
+selection.set={"range": "A3"}
+
+# Sheet 5: custom number format sandbox. Apply the code in column B to the value in column C.
+home.insertSheet={"name": "Custom Formats"}
+sheet.activate={"sheet": "Custom Formats"}
+range.setValues={"range": "A1", "values": [["Custom formats: select the cell in column C, press Ctrl+1 and type the code from column B into the Type box."]]}
+home.bold={"range": "A1", "on": true}
+range.setValues={"range": "A3", "values": [["Value", "Format code", "Try it here", "Expected result"]]}
+range.setValues={"range": "A4", "values": [[0.0825], [-0.031], [1250000], [1250000], [2678], ["11/2/2026"], ["11/2/2026"], [42], [7], [0], [-1234.5], ["3:30 PM"]]}
+range.setValues={"range": "C4", "values": [[0.0825], [-0.031], [1250000], [1250000], [2678], ["11/2/2026"], ["11/2/2026"], [42], [7], [0], [-1234.5], ["3:30 PM"]]}
+home.numberFormat={"range": "A4:A15", "format": "General"}
+home.numberFormat={"range": "C4:C15", "format": "General"}
+range.setValues={"range": "B4", "values": [["0.00%;[Red]-0.00%"], ["0.00%;[Red]-0.00%"], ["#,##0,\"k\""], ["#,##0.0,,\"M\""], ["$#,##0.0,\"k\""], ["dddd, d mmmm yyyy"], ["d mmm yyyy"], ["0 \"units\""], ["000"], ["#,##0;-#,##0;\"-\""], ["#,##0.00;[Red](#,##0.00)"], ["h:mm AM/PM"]], "parse": false}
+range.setValues={"range": "D4", "values": [["8.25%"], ["-3.10% (in red)"], ["1,250k"], ["1.3M"], ["$2.7k"], ["Monday, 2 November 2026"], ["2 Nov 2026"], ["42 units"], ["007"], ["-"], ["(1,234.50) in red"], ["3:30 PM"]], "parse": false}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "C4:C15", "color": "#FFF2CC"}
+home.borders={"range": "C4:C15", "preset": "all"}
+home.alignLeft={"range": "A4:A15"}
+home.columnWidth={"cols": "A:A", "width": 90}
+home.columnWidth={"cols": "B:B", "width": 190}
+home.columnWidth={"cols": "C:C", "width": 200}
+home.columnWidth={"cols": "D:D", "width": 200}
+selection.set={"range": "C4"}
+
+sheet.activate={"sheet": "Sales"}

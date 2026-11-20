@@ -1,0 +1,85 @@
+# 06-decisions.xlsx: a sales team, a class and an order list for IF, IFS, SWITCH and the *IF(S) functions (Chapter 6)
+# build: gridcraft-cli run --script workbooks/src/06-decisions.jsonl --out workbooks/06-decisions.xlsx
+
+# Sales Team: November sales against target. Columns F:I are left for the reader.
+sheet.rename={"sheet": "Sheet1", "name": "Sales Team"}
+sheet.activate={"sheet": "Sales Team"}
+range.setValues={"range": "A1", "values": [["Rep", "Region", "Sales", "Target", "Returns", "Hit target?", "Commission rate", "Commission", "Bonus"], ["Amira Haddad", "North", 23450, 20000, 1], ["Ben Carter", "South", 18200, 18000, 4], ["Chloe Martin", "East", 9870, 15000, 0], ["Daniel Kim", "West", 31600, 25000, 2], ["Elena Rossi", "North", 14350, 16000, 1], ["Farid Nasser", "South", 7980, 12000, 6], ["Grace Owens", "East", 21040, 20000, 3], ["Hugo Silva", "West", 12600, 15000, 0], ["Isla Brown", "North", 19999, 18000, 2], ["Jonas Weber", "South", 26300, 22000, 1]]}
+range.setValues={"range": "A12", "values": [["Total"]]}
+home.bold={"range": "A1:I1", "on": true}
+home.fillColor={"range": "A1:I1", "color": "#DDEBF7"}
+home.borders={"range": "A1:I1", "preset": "bottom"}
+home.bold={"range": "A12:I12", "on": true}
+home.borders={"range": "A12:I12", "preset": "top"}
+home.numberFormat={"range": "C2:D12", "format": "$#,##0"}
+home.numberFormat={"range": "H2:I12", "format": "$#,##0.00"}
+home.numberFormat={"range": "G2:G11", "format": "0%"}
+range.setValues={"range": "K1", "values": [["Commission bands", null], ["Sales from", "Rate"], [0, "2%"], [10000, "4%"], [20000, "6%"]]}
+home.bold={"range": "K1", "on": true}
+home.bold={"range": "K2:L2", "on": true}
+home.fillColor={"range": "K2:L2", "color": "#DDEBF7"}
+home.borders={"range": "K2:L2", "preset": "bottom"}
+home.numberFormat={"range": "K3:K5", "format": "$#,##0"}
+home.columnWidth={"cols": "A:A", "width": 105}
+home.columnWidth={"cols": "B:B", "width": 60}
+home.columnWidth={"cols": "C:E", "width": 70}
+home.columnWidth={"cols": "F:F", "width": 80}
+home.columnWidth={"cols": "G:G", "width": 108}
+home.columnWidth={"cols": "H:I", "width": 85}
+home.columnWidth={"cols": "J:J", "width": 30}
+home.columnWidth={"cols": "K:L", "width": 80}
+
+# Class: coursework, exam and attendance. Columns E:G are left for the reader.
+home.insertSheet={"name": "Class"}
+sheet.activate={"sheet": "Class"}
+range.setValues={"range": "A1", "values": [["Student", "Coursework", "Exam", "Attendance", "Average", "Result", "Grade"], ["Aisha", 88, 91, "97%"], ["Bruno", 64, 48, "85%"], ["Carmen", 72, 69, "92%"], ["Dev", 55, 52, "78%"], ["Erin", 91, 86, "99%"], ["Felix", 40, 35, "70%"], ["Gemma", 77, 74, "88%"], ["Hamza", 68, 81, "95%"], ["Ivy", 59, 61, "83%"], ["Jack", 83, 49, "90%"], ["Kenji", 45, 57, "81%"], ["Lena", 95, 98, "100%"]]}
+home.bold={"range": "A1:G1", "on": true}
+home.fillColor={"range": "A1:G1", "color": "#DDEBF7"}
+home.borders={"range": "A1:G1", "preset": "bottom"}
+home.numberFormat={"range": "D2:D13", "format": "0%"}
+home.numberFormat={"range": "E2:E13", "format": "0.0"}
+range.setValues={"range": "I1", "values": [["Grade bands", null], ["Average from", "Grade"], [85, "A"], [70, "B"], [55, "C"], [40, "D"], [0, "F"]]}
+home.bold={"range": "I1", "on": true}
+home.bold={"range": "I2:J2", "on": true}
+home.fillColor={"range": "I2:J2", "color": "#DDEBF7"}
+home.borders={"range": "I2:J2", "preset": "bottom"}
+home.columnWidth={"cols": "A:A", "width": 90}
+home.columnWidth={"cols": "B:G", "width": 85}
+home.columnWidth={"cols": "H:H", "width": 30}
+home.columnWidth={"cols": "I:J", "width": 95}
+
+# Orders: a small wholesale supplier's October and November orders. Columns J:K are left for the reader.
+home.insertSheet={"name": "Orders"}
+sheet.activate={"sheet": "Orders"}
+range.setValues={"range": "A1", "values": [["Order", "Customer", "Region", "Ship", "Ordered", "Due", "Delivered", "Amount", "Status", "Delivery", "Region name"], [1001, "Brightside Café", "N", "Standard", "10/1/2026", "10/6/2026", "10/5/2026", 412.5, "Delivered"], [1002, "Oak & Ivy Florist", "S", "Express", "10/2/2026", "10/4/2026", "10/4/2026", 189.9, "Delivered"], [1003, "Hilltop Stationery", "E", "Standard", "10/3/2026", "10/8/2026", "10/10/2026", 655.0, "Delivered"], [1004, "Peak Fitness", "W", "Standard", "10/5/2026", "10/10/2026", "10/9/2026", 1240.0, "Delivered"], [1005, "Bluebird Bakery", "N", "Express", "10/6/2026", "10/8/2026", "10/9/2026", 98.75, "Delivered"], [1006, "Copper Kettle", "S", "Standard", "10/8/2026", "10/13/2026", null, 320.0, "Cancelled"], [1007, "Maple Dental", "E", "Standard", "10/9/2026", "10/14/2026", "10/14/2026", 765.4, "Delivered"], [1008, "Riverside Books", "W", "Express", "10/12/2026", "10/14/2026", "10/16/2026", 210.0, "Delivered"], [1009, "Brightside Café", "N", "Standard", "10/15/2026", "10/20/2026", "10/19/2026", 388.2, "Delivered"], [1010, "Sunny Days Nursery", "S", "Standard", "10/16/2026", "10/21/2026", "10/23/2026", 512.6, "Delivered"], [1011, "Peak Fitness", "W", "Express", "10/19/2026", "10/21/2026", "10/21/2026", 145.0, "Delivered"], [1012, "Hilltop Stationery", "E", "Standard", "10/20/2026", "10/25/2026", "10/24/2026", 590.1, "Delivered"], [1013, "Green Leaf Grocers", "N", "Standard", "10/22/2026", "10/27/2026", "10/30/2026", 1015.0, "Delivered"], [1014, "Oak & Ivy Florist", "S", "Express", "10/26/2026", "10/28/2026", "10/28/2026", 230.45, "Delivered"], [1015, "Maple Dental", "E", "Standard", "10/28/2026", "11/2/2026", null, 480.0, "Shipped"], [1016, "Bluebird Bakery", "N", "Express", "10/29/2026", "10/31/2026", "11/2/2026", 120.3, "Delivered"], [1017, "Riverside Books", "W", "Standard", "11/2/2026", "11/7/2026", null, 365.0, "Shipped"], [1018, "Copper Kettle", "S", "Standard", "11/3/2026", "11/8/2026", null, 299.99, "Shipped"], [1019, "Green Leaf Grocers", "N", "Express", "11/4/2026", "11/6/2026", "11/6/2026", 860.0, "Delivered"], [1020, "Sunny Days Nursery", "S", "Standard", "11/5/2026", "11/10/2026", null, 445.0, "Cancelled"]]}
+home.bold={"range": "A1:K1", "on": true}
+home.fillColor={"range": "A1:K1", "color": "#DDEBF7"}
+home.borders={"range": "A1:K1", "preset": "bottom"}
+home.numberFormat={"range": "E2:G21", "format": "d mmm yyyy"}
+home.numberFormat={"range": "H2:H21", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 50}
+home.columnWidth={"cols": "B:B", "width": 125}
+home.columnWidth={"cols": "C:C", "width": 52}
+home.columnWidth={"cols": "D:D", "width": 65}
+home.columnWidth={"cols": "E:G", "width": 82}
+home.columnWidth={"cols": "H:H", "width": 78}
+home.columnWidth={"cols": "I:I", "width": 72}
+home.columnWidth={"cols": "J:J", "width": 75}
+home.columnWidth={"cols": "K:K", "width": 90}
+view.freezeTopRow={}
+
+# Summary: questions about the orders, answered with COUNTIF(S), SUMIF(S) and AVERAGEIF(S).
+home.insertSheet={"name": "Summary"}
+sheet.activate={"sheet": "Summary"}
+range.setValues={"range": "A1", "values": [["Order summary", null], [null, null], ["Region code", "N"], ["Orders from this region", null], ["Sales from this region", null], ["Delivered sales from this region", null], ["Average order from this region", null], [null, null], ["Orders over $500", null], ["Late orders", null], ["Average Express order", null], ["Orders placed in November", null], ["Average order from region X", null]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+home.bold={"range": "A3:B3", "on": true}
+home.fillColor={"range": "B3", "color": "#FFF2CC"}
+home.numberFormat={"range": "B5:B7", "format": "$#,##0.00"}
+home.numberFormat={"range": "B11", "format": "$#,##0.00"}
+home.numberFormat={"range": "B13", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 230}
+home.columnWidth={"cols": "B:B", "width": 100}
+sheet.activate={"sheet": "Sales Team"}
+selection.set={"range": "A1"}

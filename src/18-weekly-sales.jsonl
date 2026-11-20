@@ -1,0 +1,10 @@
+# Practice file for Chapter 18: GridCraft From the Command Line
+# Build: gridcraft-cli run --script workbooks/src/18-weekly-sales.jsonl --out workbooks/18-cli/weekly-sales.xlsx
+sheet.rename={"name":"Week 47"}
+range.setValues={"range":"A1","values":[["Day","Coffee","Food","Merch","Total"],["Mon",412.5,268,35,"=SUM(B2:D2)"],["Tue",389,241.5,0,"=SUM(B3:D3)"],["Wed",455.25,302,48,"=SUM(B4:D4)"],["Thu",430,288.75,22,"=SUM(B5:D5)"],["Fri",518.75,355.5,61,"=SUM(B6:D6)"],["Sat",602,410.25,87,"=SUM(B7:D7)"],["Sun",344.5,226,19,"=SUM(B8:D8)"],["Total","=SUM(B2:B8)","=SUM(C2:C8)","=SUM(D2:D8)","=SUM(E2:E8)"]]}
+home.bold={"range":"A1:E1","on":true}
+home.bold={"range":"A9:E9","on":true}
+home.numberFormat={"range":"B2:E9","format":"Currency"}
+home.borders={"range":"A9:E9","preset":"top"}
+home.columnWidth={"cols":"A:E","width":80}
+selection.set={"range":"A1"}

@@ -1,0 +1,31 @@
+# Practice workbook for Chapter 19: Working With AI Agents
+# Build: gridcraft-cli run --script workbooks/src/19-ai-agents.jsonl --out workbooks/19-ai-agents.xlsx
+#
+# Sheet 1: Timesheet (one name has a hidden trailing space, so its lookup fails with #N/A)
+sheet.rename={"name":"Timesheet"}
+range.setValues={"range":"A1","values":[["Name","Hours","Rate","Pay"],["Maya Chen",38,"=XLOOKUP(A2,Rates!$A$2:$A$6,Rates!$B$2:$B$6)","=B2*C2"],["Omar Haddad",40,"=XLOOKUP(A3,Rates!$A$2:$A$6,Rates!$B$2:$B$6)","=B3*C3"],["Jonas Berg ",35,"=XLOOKUP(A4,Rates!$A$2:$A$6,Rates!$B$2:$B$6)","=B4*C4"],["Priya Nair",22,"=XLOOKUP(A5,Rates!$A$2:$A$6,Rates!$B$2:$B$6)","=B5*C5"],["Leo Martin",30,"=XLOOKUP(A6,Rates!$A$2:$A$6,Rates!$B$2:$B$6)","=B6*C6"],["Total","=SUM(B2:B6)","","=SUM(D2:D6)"]]}
+home.bold={"range":"A1:D1","on":true}
+home.bold={"range":"A7:D7","on":true}
+home.numberFormat={"range":"C2:D7","format":"Currency"}
+home.columnWidth={"cols":"A:A","width":110}
+home.columnWidth={"cols":"B:D","width":80}
+#
+# Sheet 2: Rates (hourly rate per person)
+home.insertSheet={"name":"Rates","before":1}
+sheet.activate={"sheet":"Rates"}
+range.setValues={"range":"A1","values":[["Name","Rate"],["Maya Chen",21],["Omar Haddad",19.5],["Jonas Berg",22],["Priya Nair",18],["Leo Martin",20]]}
+home.bold={"range":"A1:B1","on":true}
+home.numberFormat={"range":"B2:B6","format":"Currency"}
+home.columnWidth={"cols":"A:A","width":110}
+#
+# Sheet 3: Sign-ups (a messy class sign-up list to clean: spaces, capitals, duplicates)
+home.insertSheet={"name":"Sign-ups","before":2}
+sheet.activate={"sheet":"Sign-ups"}
+range.setValues={"range":"A1","values":[["Name","Email","Class"],["  maya chen","Maya.Chen@example.com ","Yoga"],["OMAR HADDAD","omar.h@example.com","Spin"],["jonas berg ","JONAS.BERG@EXAMPLE.COM","Yoga"],["Priya  Nair","priya.nair@example.com","Pilates"],["maya chen","maya.chen@example.com","Yoga"],["Leo Martin","leo.martin@example.com","Spin"],["leo martin","Leo.Martin@example.com","Spin"],["Sofia Rossi","sofia.rossi@example.com ","Pilates"],["Ben Okafor","ben.okafor@example.com","Yoga"],["  ben okafor  ","BEN.OKAFOR@example.com","Yoga"]]}
+home.bold={"range":"A1:C1","on":true}
+home.columnWidth={"cols":"A:A","width":120}
+home.columnWidth={"cols":"B:B","width":190}
+home.columnWidth={"cols":"C:C","width":70}
+#
+sheet.activate={"sheet":"Timesheet"}
+selection.set={"range":"A1"}

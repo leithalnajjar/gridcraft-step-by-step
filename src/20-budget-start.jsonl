@@ -1,0 +1,15 @@
+# 20-budget-start.xlsx: one month of household spending (plus three late-September receipts) for chapter 20
+# build: gridcraft-cli run --script workbooks/src/20-budget-start.jsonl --out workbooks/20-budget-start.xlsx
+sheet.rename={"name": "Transactions"}
+range.setValues={"range": "A1", "values": [["Date", "Description", "Category", "Amount"], ["9/28/2026", "FreshMart groceries", "Groceries", 64.2], ["9/29/2026", "Taxi home", "Transport", 18.5], ["9/30/2026", "Pizza night", "Dining out", 32], ["10/1/2026", "October rent", "Rent", 1400], ["10/1/2026", "Transfer to savings", "Savings", 400], ["10/2/2026", "FreshMart groceries", "Groceries", 86.45], ["10/2/2026", "Monthly metro pass", "Transport", 75], ["10/3/2026", "Café Lumen", "Dining out", 14.8], ["10/4/2026", "Phone plan", "Phone & internet", 35], ["10/5/2026", "Home internet", "Phone & internet", 49.99], ["10/6/2026", "Renters insurance", "Insurance", 28], ["10/6/2026", "Car insurance", "Insurance", 92], ["10/7/2026", "Farmers market", "Groceries", 32.6], ["10/8/2026", "City Power electricity", "Utilities", 96.4], ["10/9/2026", "Streaming subscription", "Entertainment", 15.99], ["10/9/2026", "Fuel", "Transport", 41.2], ["10/10/2026", "FreshMart groceries", "Groceries", 112.3], ["10/11/2026", "Pizza night", "Dining out", 38.5], ["10/12/2026", "Pharmacy", "Health", 23.75], ["10/13/2026", "Water bill", "Utilities", 41.1], ["10/14/2026", "Cinema tickets", "Entertainment", 26], ["10/15/2026", "Running shoes", "Clothing", 89], ["10/16/2026", "Bakery", "Groceries", 12.4], ["10/17/2026", "FreshMart groceries", "Groceries", 94.85], ["10/18/2026", "Birthday gift", "Gifts", 45], ["10/18/2026", "Thai takeaway", "Dining out", 29.9], ["10/19/2026", "Gas bill", "Utilities", 38.6], ["10/20/2026", "Taxi", "Transport", 22.4], ["10/21/2026", "Café Lumen", "Dining out", 11.2], ["10/22/2026", "Bookshop", "Entertainment", 18.5], ["10/23/2026", "FreshMart groceries", "Groceries", 103.7], ["10/24/2026", "Dinner with friends", "Dining out", 54.6], ["10/25/2026", "T-shirts", "Clothing", 39], ["10/26/2026", "Farmers market", "Groceries", 28.9], ["10/27/2026", "Dentist check-up", "Health", 30], ["10/28/2026", "Board game night", "Entertainment", 12], ["10/29/2026", "FreshMart groceries", "Groceries", 97.15], ["10/30/2026", "Flowers for a friend", "Gifts", 18], ["10/30/2026", "Café Lumen", "Dining out", 13.4], ["10/31/2026", "Bakery", "Groceries", 9.8]]}
+home.numberFormat={"range": "A2:A200", "code": "d-mmm-yyyy"}
+home.numberFormat={"range": "D2:D200", "code": "$#,##0.00"}
+home.bold={"range": "A1:D1", "on": true}
+home.fillColor={"range": "A1:D1", "color": "#DDEBF7"}
+home.borders={"range": "A1:D1", "preset": "bottom"}
+home.columnWidth={"cols": "A:A", "chars": 13}
+home.columnWidth={"cols": "B:B", "chars": 24}
+home.columnWidth={"cols": "C:C", "chars": 18}
+home.columnWidth={"cols": "D:D", "chars": 11}
+view.freezeTopRow={}
+selection.set={"range": "A1"}

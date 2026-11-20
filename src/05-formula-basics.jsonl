@@ -1,0 +1,158 @@
+# 05-formula-basics.xlsx: Hilltop Stationery, a small shop's daily sales (Chapter 5)
+# build: gridcraft-cli run --script workbooks/src/05-formula-basics.jsonl --out workbooks/05-formula-basics.xlsx
+
+# Sheet 1: one day's sales. Columns E:G and the summary are left for the reader.
+sheet.rename={"sheet": "Sheet1", "name": "Daily Sales"}
+sheet.activate={"sheet": "Daily Sales"}
+range.setValues={"range": "A1", "values": [["Hilltop Stationery: Daily Sales"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A2", "values": [["11/7/2026"]]}
+home.numberFormat={"range": "A2", "format": "dddd d mmmm yyyy"}
+range.setValues={"range": "G2", "values": [["Sales tax rate", "8%"]]}
+home.bold={"range": "G2", "on": true}
+range.setValues={"range": "A4", "values": [["Item", "Category", "Qty", "Unit Price", "Sales", "Tax", "Total"], ["Ballpoint pens (10 pack)", "Pens", 14, 4.5], ["Gel pens (5 pack)", "Pens", 9, 6.25], ["A4 notebook", "Paper", 22, 3.8], ["A5 notebook", "Paper", 17, 2.9], ["Sticky notes", "Paper", 30, 1.75], ["Highlighters (4 pack)", "Pens", 11, 5.4], ["Stapler", "Desk", 4, 12.99], ["Scissors", "Desk", 6, 7.5], ["Glue stick", "Desk", 25, 1.2], ["Printer paper (500 sheets)", "Paper", 8, 6.95], ["Total"]]}
+home.bold={"range": "A4:G4", "on": true}
+home.fillColor={"range": "A4:G4", "color": "#DDEBF7"}
+home.borders={"range": "A4:G4", "preset": "bottom"}
+home.bold={"range": "A15:G15", "on": true}
+home.borders={"range": "A15:G15", "preset": "top"}
+home.numberFormat={"range": "D5:G15", "format": "$#,##0.00"}
+range.setValues={"range": "A17", "values": [["Average sale"], ["Largest sale"], ["Smallest sale"], ["Number of sales"], ["Items listed"]]}
+home.bold={"range": "A17:A21", "on": true}
+home.numberFormat={"range": "B17:B19", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 200}
+home.columnWidth={"cols": "B:B", "width": 80}
+home.columnWidth={"cols": "C:C", "width": 60}
+home.columnWidth={"cols": "D:G", "width": 90}
+home.columnWidth={"cols": "H:H", "width": 60}
+
+# Sheet 2: a bulk price grid for mixed references ($B4*C$3).
+home.insertSheet={"name": "Bulk Prices"}
+sheet.activate={"sheet": "Bulk Prices"}
+range.setValues={"range": "A1", "values": [["Bulk order prices"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "C2", "values": [["Quantity"]]}
+home.italic={"range": "C2", "on": true}
+range.setValues={"range": "A3", "values": [["Item", "Unit Price", 1, 5, 10, 25], ["A4 notebook", 3.8], ["Sticky notes", 1.75], ["Glue stick", 1.2], ["Printer paper (500 sheets)", 6.95], ["Ballpoint pens (10 pack)", 4.5]]}
+home.bold={"range": "A3:F3", "on": true}
+home.fillColor={"range": "A3:F3", "color": "#DDEBF7"}
+home.borders={"range": "A3:F3", "preset": "bottom"}
+home.numberFormat={"range": "B4:F8", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 200}
+home.columnWidth={"cols": "B:F", "width": 85}
+
+# Week 1: same layout on every week sheet, so 3-D references work (total in D10).
+home.insertSheet={"name": "Week 1"}
+sheet.activate={"sheet": "Week 1"}
+range.setValues={"range": "A1", "values": [["Week 1: 2 to 7 November 2026"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Day", "Cash", "Card", "Total"], ["Mon", 182.4, 341.75, "=B4+C4"], ["Tue", 156.2, 298.6, "=B5+C5"], ["Wed", 201.85, 362.1, "=B6+C6"], ["Thu", 174.3, 327.45, "=B7+C7"], ["Fri", 248.9, 455.2, "=B8+C8"], ["Sat", 312.55, 598.4, "=B9+C9"], ["Week total", "=SUM(B4:B9)", "=SUM(C4:C9)", "=SUM(D4:D9)"]]}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "A3:D3", "color": "#DDEBF7"}
+home.borders={"range": "A3:D3", "preset": "bottom"}
+home.bold={"range": "A10:D10", "on": true}
+home.borders={"range": "A10:D10", "preset": "top"}
+home.numberFormat={"range": "B4:D10", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 110}
+home.columnWidth={"cols": "B:D", "width": 90}
+
+# Week 2: same layout on every week sheet, so 3-D references work (total in D10).
+home.insertSheet={"name": "Week 2"}
+sheet.activate={"sheet": "Week 2"}
+range.setValues={"range": "A1", "values": [["Week 2: 9 to 14 November 2026"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Day", "Cash", "Card", "Total"], ["Mon", 169.75, 322.4, "=B4+C4"], ["Tue", 143.1, 285.95, "=B5+C5"], ["Wed", 188.6, 349.3, "=B6+C6"], ["Thu", 195.25, 366.8, "=B7+C7"], ["Fri", 262.4, 472.15, "=B8+C8"], ["Sat", 298.7, 611.25, "=B9+C9"], ["Week total", "=SUM(B4:B9)", "=SUM(C4:C9)", "=SUM(D4:D9)"]]}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "A3:D3", "color": "#DDEBF7"}
+home.borders={"range": "A3:D3", "preset": "bottom"}
+home.bold={"range": "A10:D10", "on": true}
+home.borders={"range": "A10:D10", "preset": "top"}
+home.numberFormat={"range": "B4:D10", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 110}
+home.columnWidth={"cols": "B:D", "width": 90}
+
+# Week 3: same layout on every week sheet, so 3-D references work (total in D10).
+home.insertSheet={"name": "Week 3"}
+sheet.activate={"sheet": "Week 3"}
+range.setValues={"range": "A1", "values": [["Week 3: 16 to 21 November 2026"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Day", "Cash", "Card", "Total"], ["Mon", 175.2, 318.9, "=B4+C4"], ["Tue", 151.85, 301.4, "=B5+C5"], ["Wed", 210.45, 377.65, "=B6+C6"], ["Thu", 182.9, 340.2, "=B7+C7"], ["Fri", 255.1, 468.75, "=B8+C8"], ["Sat", 321.35, 624.8, "=B9+C9"], ["Week total", "=SUM(B4:B9)", "=SUM(C4:C9)", "=SUM(D4:D9)"]]}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "A3:D3", "color": "#DDEBF7"}
+home.borders={"range": "A3:D3", "preset": "bottom"}
+home.bold={"range": "A10:D10", "on": true}
+home.borders={"range": "A10:D10", "preset": "top"}
+home.numberFormat={"range": "B4:D10", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 110}
+home.columnWidth={"cols": "B:D", "width": 90}
+
+# Week 4: same layout on every week sheet, so 3-D references work (total in D10).
+home.insertSheet={"name": "Week 4"}
+sheet.activate={"sheet": "Week 4"}
+range.setValues={"range": "A1", "values": [["Week 4: 23 to 28 November 2026"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Day", "Cash", "Card", "Total"], ["Mon", 160.4, 309.15, "=B4+C4"], ["Tue", 148.95, 279.6, "=B5+C5"], ["Wed", 196.3, 355.85, "=B6+C6"], ["Thu", 189.7, 352.4, "=B7+C7"], ["Fri", 270.25, 489.9, "=B8+C8"], ["Sat", 305.8, 603.1, "=B9+C9"], ["Week total", "=SUM(B4:B9)", "=SUM(C4:C9)", "=SUM(D4:D9)"]]}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "A3:D3", "color": "#DDEBF7"}
+home.borders={"range": "A3:D3", "preset": "bottom"}
+home.bold={"range": "A10:D10", "on": true}
+home.borders={"range": "A10:D10", "preset": "top"}
+home.numberFormat={"range": "B4:D10", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 110}
+home.columnWidth={"cols": "B:D", "width": 90}
+
+# Month sheet: the reader links it to the week sheets.
+home.insertSheet={"name": "Month"}
+sheet.activate={"sheet": "Month"}
+range.setValues={"range": "A1", "values": [["November 2026: month summary"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["Week", "Cash", "Card", "Total"], ["Week 1"], ["Week 2"], ["Week 3"], ["Week 4"], ["Month total"], [null], ["3-D check: month total"], ["3-D: best single day"]]}
+home.bold={"range": "A3:D3", "on": true}
+home.fillColor={"range": "A3:D3", "color": "#DDEBF7"}
+home.borders={"range": "A3:D3", "preset": "bottom"}
+home.bold={"range": "A8:D8", "on": true}
+home.borders={"range": "A8:D8", "preset": "top"}
+home.numberFormat={"range": "B4:D11", "format": "$#,##0.00"}
+home.italic={"range": "A10:A11", "on": true}
+home.columnWidth={"cols": "A:A", "width": 190}
+home.columnWidth={"cols": "B:D", "width": 90}
+
+# Fix the Errors: six broken formulas in column B, one of each error value.
+home.insertSheet={"name": "Fix the Errors"}
+sheet.activate={"sheet": "Fix the Errors"}
+range.setValues={"range": "A1", "values": [["Fix the errors"]]}
+home.bold={"range": "A1", "on": true}
+home.fontSize={"range": "A1", "size": 14}
+range.setValues={"range": "A3", "values": [["What the formula should show", "Result", null, "Category", "Sales"]]}
+home.bold={"range": "A3:B3", "on": true}
+home.fillColor={"range": "A3:B3", "color": "#DDEBF7"}
+home.borders={"range": "A3:B3", "preset": "bottom"}
+home.bold={"range": "D3:E3", "on": true}
+home.fillColor={"range": "D3:E3", "color": "#DDEBF7"}
+home.borders={"range": "D3:E3", "preset": "bottom"}
+range.setValues={"range": "D4", "values": [["Pens", 412.5], ["Paper", 389.2], ["Desk", 156.4], ["Gifts", "n/a"]]}
+range.setValues={"range": "D9", "values": [["Customers", 0]]}
+range.setValues={"range": "D11", "values": [["Item", "Price"], ["Stapler", 12.99], ["Scissors", 7.5], ["Glue stick", 1.2]]}
+home.bold={"range": "D11:E11", "on": true}
+home.fillColor={"range": "D11:E11", "color": "#DDEBF7"}
+home.borders={"range": "D11:E11", "preset": "bottom"}
+home.numberFormat={"range": "E4:E7", "format": "$#,##0.00"}
+home.numberFormat={"range": "E12:E14", "format": "$#,##0.00"}
+range.setValues={"range": "A4", "values": [["Sales per customer", "=SUM(E4:E6)/E9"], ["Total of Pens, Paper and Desk", "=SUMM(E4:E6)"], ["Price of a ruler", "=VLOOKUP(\"Ruler\",D12:E14,2,FALSE)"], ["Gift sales with 8% tax", "=E7*1.08"], ["Pens sales doubled", "=#REF!*2"], ["List of categories", "=D4:D7"]]}
+home.numberFormat={"range": "B4:B8", "format": "$#,##0.00"}
+range.setValues={"range": "B11", "values": [["old note"]]}
+home.italic={"range": "B11", "on": true}
+home.columnWidth={"cols": "A:A", "width": 230}
+home.columnWidth={"cols": "B:B", "width": 90}
+home.columnWidth={"cols": "C:C", "width": 30}
+home.columnWidth={"cols": "D:D", "width": 90}
+home.columnWidth={"cols": "E:E", "width": 80}
+sheet.activate={"sheet": "Daily Sales"}
+selection.set={"range": "A1"}

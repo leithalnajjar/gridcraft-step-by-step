@@ -1,0 +1,67 @@
+# 09-dynamic-arrays.xlsx: Crumb & Co., a bakery's wholesale orders, plus two volunteer rosters (Chapter 9)
+# build: gridcraft-cli run --script workbooks/src/09-dynamic-arrays.jsonl --out workbooks/09-dynamic-arrays.xlsx
+
+# Sales: 30 wholesale orders. Everything else on this sheet is for the reader's formulas, from column H.
+sheet.rename={"sheet": "Sheet1", "name": "Sales"}
+sheet.activate={"sheet": "Sales"}
+range.setValues={"range": "A1", "values": [["Date", "Region", "Rep", "Product", "Units", "Revenue"], ["10/5/2026", "North", "Amira", "Sourdough", 40, 180.0], ["10/5/2026", "South", "Ben", "Croissants", 120, 216.0], ["10/6/2026", "East", "Chloe", "Bagels", 150, 180.0], ["10/7/2026", "West", "Daniel", "Muffins", 60, 144.0], ["10/8/2026", "North", "Elena", "Croissants", 90, 162.0], ["10/9/2026", "South", "Ben", "Sourdough", 35, 157.5], ["10/12/2026", "East", "Chloe", "Muffins", 48, 115.2], ["10/13/2026", "West", "Daniel", "Sourdough", 55, 247.5], ["10/14/2026", "North", "Amira", "Bagels", 200, 240.0], ["10/15/2026", "South", "Ben", "Muffins", 72, 172.8], ["10/16/2026", "East", "Chloe", "Croissants", 110, 198.0], ["10/19/2026", "West", "Daniel", "Bagels", 130, 156.0], ["10/20/2026", "North", "Elena", "Sourdough", 45, 202.5], ["10/21/2026", "South", "Ben", "Bagels", 90, 108.0], ["10/22/2026", "East", "Chloe", "Sourdough", 30, 135.0], ["10/23/2026", "West", "Daniel", "Croissants", 140, 252.0], ["10/26/2026", "North", "Amira", "Muffins", 84, 201.6], ["10/27/2026", "South", "Ben", "Croissants", 100, 180.0], ["10/28/2026", "East", "Chloe", "Bagels", 160, 192.0], ["10/29/2026", "West", "Daniel", "Muffins", 36, 86.4], ["11/2/2026", "North", "Elena", "Bagels", 180, 216.0], ["11/3/2026", "South", "Ben", "Sourdough", 50, 225.0], ["11/4/2026", "East", "Chloe", "Croissants", 95, 171.0], ["11/5/2026", "West", "Daniel", "Sourdough", 60, 270.0], ["11/6/2026", "North", "Amira", "Croissants", 150, 270.0], ["11/9/2026", "South", "Ben", "Muffins", 66, 158.4], ["11/10/2026", "East", "Chloe", "Muffins", 54, 129.6], ["11/11/2026", "West", "Daniel", "Bagels", 120, 144.0], ["11/12/2026", "North", "Elena", "Muffins", 48, 115.2], ["11/13/2026", "South", "Ben", "Bagels", 110, 132.0]]}
+home.bold={"range": "A1:F1", "on": true}
+home.fillColor={"range": "A1:F1", "color": "#DDEBF7"}
+home.borders={"range": "A1:F1", "preset": "bottom"}
+home.numberFormat={"range": "A2:A31", "format": "d mmm"}
+home.numberFormat={"range": "F2:F31", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 60}
+home.columnWidth={"cols": "B:B", "width": 60}
+home.columnWidth={"cols": "C:C", "width": 60}
+home.columnWidth={"cols": "D:D", "width": 85}
+home.columnWidth={"cols": "E:E", "width": 50}
+home.columnWidth={"cols": "F:F", "width": 75}
+home.columnWidth={"cols": "G:G", "width": 30}
+home.columnWidth={"cols": "H:M", "width": 85}
+view.freezeTopRow={}
+
+# Saturday and Sunday: volunteer rosters for a food fair, to stack with VSTACK.
+home.insertSheet={"name": "Saturday"}
+sheet.activate={"sheet": "Saturday"}
+range.setValues={"range": "A1", "values": [["Name", "Role"], ["Priya", "Tickets"], ["Marco", "Bar"], ["Lena", "First aid"], ["Sam", "Tickets"], ["Joy", "Setup"]]}
+home.bold={"range": "A1:B1", "on": true}
+home.fillColor={"range": "A1:B1", "color": "#DDEBF7"}
+home.borders={"range": "A1:B1", "preset": "bottom"}
+home.columnWidth={"cols": "A:B", "width": 85}
+home.insertSheet={"name": "Sunday"}
+sheet.activate={"sheet": "Sunday"}
+range.setValues={"range": "A1", "values": [["Name", "Role"], ["Marco", "Bar"], ["Ade", "Tickets"], ["Priya", "Setup"], ["Ravi", "First aid"]]}
+home.bold={"range": "A1:B1", "on": true}
+home.fillColor={"range": "A1:B1", "color": "#DDEBF7"}
+home.borders={"range": "A1:B1", "preset": "bottom"}
+home.columnWidth={"cols": "A:B", "width": 85}
+
+# Report: inputs in column A; the reader's FILTER report spills from C1. Date and money columns are formatted in advance.
+home.insertSheet={"name": "Report"}
+sheet.activate={"sheet": "Report"}
+range.setValues={"range": "A1", "values": [["Region"], ["North"], ["Minimum units"], [100]]}
+home.bold={"range": "A1", "on": true}
+home.bold={"range": "A3", "on": true}
+home.fillColor={"range": "A2", "color": "#FFF2CC"}
+home.fillColor={"range": "A4", "color": "#FFF2CC"}
+home.bold={"range": "C1:H1", "on": true}
+home.fillColor={"range": "C1:H1", "color": "#DDEBF7"}
+home.borders={"range": "C1:H1", "preset": "bottom"}
+home.numberFormat={"range": "C2:C40", "format": "d mmm"}
+home.numberFormat={"range": "H2:H40", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 110}
+home.columnWidth={"cols": "B:B", "width": 30}
+home.columnWidth={"cols": "C:C", "width": 60}
+home.columnWidth={"cols": "D:E", "width": 65}
+home.columnWidth={"cols": "F:F", "width": 85}
+home.columnWidth={"cols": "G:G", "width": 55}
+home.columnWidth={"cols": "H:H", "width": 75}
+
+# Summary: room for GROUPBY (from A1) and PIVOTBY (from A10). Money format in advance.
+home.insertSheet={"name": "Summary"}
+sheet.activate={"sheet": "Summary"}
+home.numberFormat={"range": "B1:F20", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 85}
+home.columnWidth={"cols": "B:F", "width": 90}
+sheet.activate={"sheet": "Sales"}
+selection.set={"range": "H2"}

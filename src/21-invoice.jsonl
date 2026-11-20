@@ -1,0 +1,76 @@
+# 21-invoice.xlsx: the finished invoice template for chapter 21 (runs on top of the starter)
+# build: gridcraft-cli run --in workbooks/21-invoice-start.xlsx --script workbooks/src/21-invoice.jsonl --out workbooks/21-invoice.xlsx
+# 1. names for the two dropdown lists (they follow the tables when you resize them)
+formulas.defineName={"name": "ClientList", "refersTo": "=Clients[Client]"}
+formulas.defineName={"name": "ProductList", "refersTo": "=Products[Item]"}
+# 2. the Invoice sheet
+home.insertSheet={"name": "Invoice", "before": 0}
+sheet.activate={"sheet": "Invoice"}
+range.setValues={"range": "B2", "values": [["Brightside Studio"], ["18 Harbor Lane, Riverton"], ["studio@brightside.example | 555-0142"]]}
+cell.set={"cell": "F2", "input": "INVOICE"}
+range.setValues={"range": "B6", "values": [["Bill to"], ["Maple & Co. Bakery"]]}
+range.setValues={"range": "E6", "values": [["Invoice no.", 1047], ["Invoice date", "11/16/2026"], ["Due date", "=F7+F9"], ["Terms", "=XLOOKUP(B7,Clients[Client],Clients[Terms],0)"]]}
+cell.set={"cell": "B8", "input": "=XLOOKUP(B7,Clients[Client],Clients[Contact],\"\")"}
+cell.set={"cell": "B9", "input": "=XLOOKUP(B7,Clients[Client],Clients[Street],\"\")"}
+cell.set={"cell": "B10", "input": "=XLOOKUP(B7,Clients[Client],Clients[City],\"\")"}
+cell.set={"cell": "B11", "input": "=XLOOKUP(B7,Clients[Client],Clients[Email],\"\")"}
+# line items
+range.setValues={"range": "B13", "values": [["Item", "Qty", "Unit", "Unit price", "Amount"], ["Logo design", 1], ["Business cards (250)", 2], ["Menu design (A4)", 1], ["A2 poster print", 6], ["Design work", 3]]}
+cell.set={"cell": "D14", "input": "=XLOOKUP(B14,Products[Item],Products[Unit],\"\")"}
+cell.set={"cell": "E14", "input": "=XLOOKUP(B14,Products[Item],Products[Price],\"\")"}
+cell.set={"cell": "F14", "input": "=IF(B14=\"\",\"\",C14*E14)"}
+edit.fillDown={"range": "D14:F23"}
+# totals
+range.setValues={"range": "D25", "values": [[null, "Subtotal", "=SUM(F14:F23)"], ["=XLOOKUP(B7,Clients[Client],Clients[Discount],0)", "Discount", "=-ROUND(F25*D26,2)"], [0.08, "Sales tax", "=ROUND((F25+F26)*D27,2)"], [null, "Total due", "=F25+F26+F27"]]}
+cell.set={"cell": "B30", "input": "Thank you for your business. Please quote the invoice number with your payment."}
+# 3. formatting
+home.columnWidth={"cols": "A:A", "chars": 2}
+home.columnWidth={"cols": "B:B", "chars": 38}
+home.columnWidth={"cols": "C:C", "chars": 7}
+home.columnWidth={"cols": "D:D", "chars": 10}
+home.columnWidth={"cols": "E:E", "chars": 13}
+home.columnWidth={"cols": "F:F", "chars": 15}
+home.fontSize={"range": "B2", "size": 18}
+home.bold={"range": "B2", "on": true}
+home.fontColor={"range": "B2", "color": "#1F4E79"}
+home.fontSize={"range": "F2", "size": 20}
+home.bold={"range": "F2", "on": true}
+home.fontColor={"range": "F2", "color": "#1F4E79"}
+home.alignRight={"range": "F2"}
+home.fontColor={"range": "B3:B4", "color": "#595959"}
+home.bold={"range": "B6", "on": true}
+home.fontColor={"range": "B6", "color": "#1F4E79"}
+home.bold={"range": "B7", "on": true}
+home.bold={"range": "E6:E9", "on": true}
+home.numberFormat={"range": "F6", "code": "\"INV-\"0000"}
+home.numberFormat={"range": "F7:F8", "code": "d-mmm-yyyy"}
+home.numberFormat={"range": "F9", "code": "\"Net \"0"}
+home.alignRight={"range": "F6:F9"}
+home.fillColor={"range": "B13:F13", "color": "#1F4E79"}
+home.fontColor={"range": "B13:F13", "color": "#FFFFFF"}
+home.bold={"range": "B13:F13", "on": true}
+home.alignRight={"range": "C13"}
+home.alignRight={"range": "E13:F13"}
+home.alignCenter={"range": "D13:D23"}
+home.borders={"range": "B14:F23", "preset": "insideHorizontal", "style": "thin", "color": "#BFBFBF"}
+home.borders={"range": "B23:F23", "preset": "bottom", "style": "thin", "color": "#1F4E79"}
+home.numberFormat={"range": "E14:F23", "code": "#,##0.00"}
+home.numberFormat={"range": "F25:F27", "code": "#,##0.00"}
+home.numberFormat={"range": "D26:D27", "code": "0%"}
+home.fontColor={"range": "D26:D27", "color": "#595959"}
+home.alignRight={"range": "E25:E28"}
+home.numberFormat={"range": "F28", "code": "$#,##0.00"}
+home.cellStyle={"range": "E28:F28", "name": "Total"}
+home.fontSize={"range": "E28:F28", "size": 13}
+home.italic={"range": "B30", "on": true}
+home.fontColor={"range": "B30", "color": "#595959"}
+view.gridlines={"on": false}
+# 4. dropdowns and a quantity check
+data.validation={"range": "B7", "type": "list", "formula1": "=ClientList", "errorStyle": "stop", "errorTitle": "Unknown client", "errorMessage": "Pick a client from the list, or add the client to the Clients sheet first."}
+data.validation={"range": "B14:B23", "type": "list", "formula1": "=ProductList", "errorStyle": "stop", "errorTitle": "Unknown item", "errorMessage": "Pick an item from the list, or add it to the Products sheet first."}
+data.validation={"range": "C14:C23", "type": "whole", "operator": "greaterOrEqual", "formula1": "1", "errorStyle": "stop", "errorTitle": "Quantity", "errorMessage": "Type a whole number of 1 or more."}
+# 5. print setup: portrait Letter, print area B2:F30
+pageLayout.orientation={"orientation": "portrait"}
+pageLayout.size={"paper": "Letter"}
+pageLayout.printArea={"range": "B2:F30"}
+selection.set={"range": "B7"}

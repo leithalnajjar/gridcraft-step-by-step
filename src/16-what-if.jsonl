@@ -1,0 +1,33 @@
+# 16-what-if.xlsx: Rise & Shine Bakery break-even, staff rota and sales history for chapter 16
+sheet.rename={"name": "Break-even"}
+range.setValues={"range": "A1", "values": [["Rise & Shine Bakery: monthly break-even", null], [null, null], ["Price per loaf", 6.5], ["Cost per loaf (flour, packaging)", 2.1], ["Loaves sold per month", 1200], [null, null], ["Rent", 1800], ["Wages", 4200], ["Utilities", 650], ["Other fixed costs", 350], ["Total fixed costs", "=SUM(B7:B10)"], [null, null], ["Revenue", "=B3*B5"], ["Variable costs", "=B4*B5"], ["Profit", "=B13-B14-B11"]]}
+home.bold={"range": "A1", "on": true}
+home.bold={"range": "A15:B15", "on": true}
+home.numberFormat={"range": "B3:B4", "code": "$#,##0.00"}
+home.numberFormat={"range": "B5", "code": "#,##0"}
+home.numberFormat={"range": "B7:B15", "code": "$#,##0;-$#,##0"}
+home.columnWidth={"cols": "A:A", "chars": 32}
+home.columnWidth={"cols": "B:B", "chars": 11}
+home.insertSheet={"name": "Rota", "before": 1}
+sheet.activate={"sheet": "Rota"}
+range.setValues={"range": "A1", "values": [["Rise & Shine Bakery: weekly staff rota (each person works 5 days in a row)", null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null, null], ["Shift pattern", "Starts", "Staff", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], ["Pattern 1", "Mon", 0, 1, 1, 1, 1, 1, 0, 0], ["Pattern 2", "Tue", 0, 0, 1, 1, 1, 1, 1, 0], ["Pattern 3", "Wed", 0, 0, 0, 1, 1, 1, 1, 1], ["Pattern 4", "Thu", 0, 1, 0, 0, 1, 1, 1, 1], ["Pattern 5", "Fri", 0, 1, 1, 0, 0, 1, 1, 1], ["Pattern 6", "Sat", 0, 1, 1, 1, 0, 0, 1, 1], ["Pattern 7", "Sun", 0, 1, 1, 1, 1, 0, 0, 1], [null, null, null, null, null, null, null, null, null, null], ["Staff working", null, null, "=SUMPRODUCT($C$4:$C$10,D4:D10)", "=SUMPRODUCT($C$4:$C$10,E4:E10)", "=SUMPRODUCT($C$4:$C$10,F4:F10)", "=SUMPRODUCT($C$4:$C$10,G4:G10)", "=SUMPRODUCT($C$4:$C$10,H4:H10)", "=SUMPRODUCT($C$4:$C$10,I4:I10)", "=SUMPRODUCT($C$4:$C$10,J4:J10)"], ["Staff needed", null, null, 3, 3, 4, 4, 6, 7, 5], [null, null, null, null, null, null, null, null, null, null], ["Total staff", null, "=SUM(C4:C10)", null, null, null, null, null, null, null], ["Weekly wage cost", null, "=C15*560", null, null, null, null, null, null, null]]}
+home.bold={"range": "A1", "on": true}
+home.bold={"range": "A3:J3", "on": true}
+home.numberFormat={"range": "C16", "code": "$#,##0"}
+home.columnWidth={"cols": "A:A", "chars": 16}
+home.columnWidth={"cols": "B:C", "chars": 7}
+home.columnWidth={"cols": "D:J", "chars": 5}
+home.insertSheet={"name": "Daily Sales", "before": 2}
+sheet.activate={"sheet": "Daily Sales"}
+range.setValues={"range": "A1", "values": [["Date", "Loaves Sold", null, "Bins"], ["8/3/2026", 47, null, 40], ["8/4/2026", 48, null, 50], ["8/5/2026", 53, null, 60], ["8/6/2026", 50, null, 70], ["8/7/2026", 67, null, 80], ["8/8/2026", 74], ["8/9/2026", 63], ["8/10/2026", 36], ["8/11/2026", 46], ["8/12/2026", 46], ["8/13/2026", 48], ["8/14/2026", 61], ["8/15/2026", 67], ["8/16/2026", 58], ["8/17/2026", 45], ["8/18/2026", 43], ["8/19/2026", 42], ["8/20/2026", 50], ["8/21/2026", 54], ["8/22/2026", 74], ["8/23/2026", 57], ["8/24/2026", 36], ["8/25/2026", 37], ["8/26/2026", 38], ["8/27/2026", 55], ["8/28/2026", 68], ["8/29/2026", 76], ["8/30/2026", 56], ["8/31/2026", 45], ["9/1/2026", 44], ["9/2/2026", 46], ["9/3/2026", 54], ["9/4/2026", 56], ["9/5/2026", 78], ["9/6/2026", 64], ["9/7/2026", 49], ["9/8/2026", 49], ["9/9/2026", 43], ["9/10/2026", 50], ["9/11/2026", 55], ["9/12/2026", 76], ["9/13/2026", 51], ["9/14/2026", 36], ["9/15/2026", 49], ["9/16/2026", 49], ["9/17/2026", 48], ["9/18/2026", 69], ["9/19/2026", 71], ["9/20/2026", 58], ["9/21/2026", 45], ["9/22/2026", 43], ["9/23/2026", 52], ["9/24/2026", 55], ["9/25/2026", 56], ["9/26/2026", 72], ["9/27/2026", 64], ["9/28/2026", 36], ["9/29/2026", 47], ["9/30/2026", 53], ["10/1/2026", 41], ["10/2/2026", 69], ["10/3/2026", 70], ["10/4/2026", 63], ["10/5/2026", 38], ["10/6/2026", 48], ["10/7/2026", 38], ["10/8/2026", 45], ["10/9/2026", 61], ["10/10/2026", 79], ["10/11/2026", 60], ["10/12/2026", 37], ["10/13/2026", 34], ["10/14/2026", 50], ["10/15/2026", 51], ["10/16/2026", 69], ["10/17/2026", 83], ["10/18/2026", 51], ["10/19/2026", 43], ["10/20/2026", 43], ["10/21/2026", 41], ["10/22/2026", 43], ["10/23/2026", 57], ["10/24/2026", 74], ["10/25/2026", 49]]}
+home.numberFormat={"range": "A2:A85", "code": "ddd d-mmm"}
+home.bold={"range": "A1:D1", "on": true}
+home.columnWidth={"cols": "A:B", "chars": 12}
+home.insertSheet={"name": "Monthly Sales", "before": 3}
+sheet.activate={"sheet": "Monthly Sales"}
+range.setValues={"range": "A1", "values": [["Month", "Loaves Sold"], ["1/1/2024", 1045], ["2/1/2024", 1025], ["3/1/2024", 1074], ["4/1/2024", 1151], ["5/1/2024", 1175], ["6/1/2024", 1169], ["7/1/2024", 1086], ["8/1/2024", 1083], ["9/1/2024", 1212], ["10/1/2024", 1274], ["11/1/2024", 1422], ["12/1/2024", 1647], ["1/1/2025", 1122], ["2/1/2025", 1103], ["3/1/2025", 1203], ["4/1/2025", 1259], ["5/1/2025", 1292], ["6/1/2025", 1241], ["7/1/2025", 1201], ["8/1/2025", 1197], ["9/1/2025", 1342], ["10/1/2025", 1369], ["11/1/2025", 1520], ["12/1/2025", 1850], ["1/1/2026", 1248], ["2/1/2026", 1186], ["3/1/2026", 1307], ["4/1/2026", 1357], ["5/1/2026", 1397], ["6/1/2026", 1331], ["7/1/2026", 1291], ["8/1/2026", 1300], ["9/1/2026", 1430], ["10/1/2026", 1543]]}
+home.numberFormat={"range": "A2:A35", "code": "mmm yyyy"}
+home.bold={"range": "A1:B1", "on": true}
+home.columnWidth={"cols": "A:B", "chars": 12}
+sheet.activate={"sheet": "Break-even"}
+selection.set={"range": "B5"}

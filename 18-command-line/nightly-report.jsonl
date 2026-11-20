@@ -1,0 +1,16 @@
+# Nightly report for Chapter 18: GridCraft From the Command Line
+# Run:  gridcraft-cli run --in today-orders.csv --script nightly-report.jsonl --out report.xlsx
+# Then: gridcraft-cli convert report.xlsx report.pdf
+# The formulas spill, so the script works for any number of orders.
+sheet.rename={"name":"Orders"}
+cell.set={"cell":"F1","input":"Line total"}
+cell.set={"cell":"F2","input":"=FILTER(D2:D1000*E2:E1000, A2:A1000<>\"\")"}
+home.bold={"range":"A1:F1","on":true}
+home.fillColor={"range":"A1:F1","color":"#DDEBF7"}
+home.numberFormat={"range":"E:F","format":"Currency"}
+range.setValues={"range":"H1","values":[["Summary",""],["Orders","=COUNT(A2:A1000)"],["Units","=SUM(D2:D1000)"],["Revenue","=SUM(F2#)"],["Biggest order","=MAX(F2#)"]]}
+home.bold={"range":"H1:H5","on":true}
+home.numberFormat={"range":"I4:I5","format":"Currency"}
+home.autofitColumnWidth={"cols":"A:I"}
+pageLayout.orientation={"orientation":"landscape"}
+selection.set={"range":"A1"}

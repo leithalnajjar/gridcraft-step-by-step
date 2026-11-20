@@ -1,0 +1,66 @@
+# 22-inventory.xlsx: the finished inventory tracker for chapter 22 (runs on top of the starter)
+# build: gridcraft-cli run --in workbooks/22-inventory-start.xlsx --script workbooks/src/22-inventory.jsonl --out workbooks/22-inventory.xlsx
+# 1. five new columns in the Stock table: type the headers, then resize the table to take them in
+sheet.activate={"sheet": "Stock"}
+range.setValues={"range": "I1", "values": [["In", "Out", "On hand", "Status", "Stock value"]]}
+selection.set={"range": "A2"}
+table.resize={"table": "Stock", "range": "A1:M21"}
+# 2. formulas in the first row, filled down by hand (0.19.1 has no calculated columns)
+cell.set={"cell": "I2", "input": "=SUMIFS(Moves[Qty],Moves[SKU],[@SKU],Moves[Type],\"In\")"}
+cell.set={"cell": "J2", "input": "=SUMIFS(Moves[Qty],Moves[SKU],[@SKU],Moves[Type],\"Out\")"}
+cell.set={"cell": "K2", "input": "=[@Opening]+[@In]-[@Out]"}
+cell.set={"cell": "L2", "input": "=IFS([@[On hand]]=0,\"Out of stock\",[@[On hand]]<=[@[Reorder level]],\"Reorder\",TRUE,\"OK\")"}
+cell.set={"cell": "M2", "input": "=[@[On hand]]*[@[Unit cost]]"}
+edit.fillDown={"range": "I2:M21"}
+home.numberFormat={"range": "M2:M21", "code": "$#,##0.00"}
+home.alignCenter={"range": "L2:L21"}
+home.columnWidth={"cols": "I:J", "chars": 7}
+home.columnWidth={"cols": "K:K", "chars": 11}
+home.columnWidth={"cols": "L:L", "chars": 13}
+home.columnWidth={"cols": "M:M", "chars": 13}
+# 3. a total row with the value of everything on the shelves
+table.totalRow={"table": "Stock", "on": true}
+table.totalFunction={"table": "Stock", "column": "Stock value", "function": "sum"}
+home.numberFormat={"range": "M22", "code": "$#,##0.00"}
+# 4. alerts: red rows when out of stock, yellow rows when it's time to reorder
+home.conditionalFormat={"range": "A2:M21", "rule": {"type": "expression", "formula": "=$L2=\"Out of stock\"", "preset": "lightRedFillDarkRedText"}}
+home.conditionalFormat={"range": "A2:M21", "rule": {"type": "expression", "formula": "=$L2=\"Reorder\"", "preset": "yellowFillDarkYellowText"}}
+# 5. the movement log: dropdowns, a quantity check and a "rows outside the table" warning
+formulas.defineName={"name": "SkuList", "refersTo": "=Stock[SKU]"}
+sheet.activate={"sheet": "Moves"}
+data.validation={"range": "B2:B500", "type": "list", "formula1": "=SkuList", "errorStyle": "stop", "errorTitle": "Unknown SKU", "errorMessage": "Pick a SKU from the list. New products go on the Stock sheet first."}
+data.validation={"range": "C2:C500", "type": "list", "formula1": "In,Out", "errorStyle": "stop", "errorTitle": "Type", "errorMessage": "Type In for a delivery or Out for a sale."}
+data.validation={"range": "D2:D500", "type": "whole", "operator": "greaterOrEqual", "formula1": "1", "errorStyle": "stop", "errorTitle": "Quantity", "errorMessage": "Type a whole number of 1 or more."}
+range.setValues={"range": "G1", "values": [["Rows outside the table", "=COUNTA(A:A)-ROWS(Moves)-1"]]}
+home.bold={"range": "G1", "on": true}
+home.columnWidth={"cols": "G:G", "chars": 22}
+home.columnWidth={"cols": "H:H", "chars": 6}
+home.alignCenter={"range": "H1"}
+home.conditionalFormat={"range": "H1", "rule": {"type": "cellIs", "operator": "greaterThan", "value": "0", "preset": "lightRedFillDarkRedText"}}
+selection.set={"range": "A1"}
+# 6. the Reorder sheet: a live list of everything at or below its reorder level
+home.insertSheet={"name": "Reorder", "before": 2}
+sheet.activate={"sheet": "Reorder"}
+cell.set={"cell": "A1", "input": "Reorder list"}
+cell.set={"cell": "A2", "input": "=COUNTIF(Stock[Status],\"Reorder\")&\" items to reorder, \"&COUNTIF(Stock[Status],\"Out of stock\")&\" out of stock\""}
+range.setValues={"range": "E2", "values": [["Order total", "=SUM(F5#)"]]}
+range.setValues={"range": "A4", "values": [["SKU", "Item", "Supplier", "On hand", "Order qty", "Order cost"]]}
+cell.set={"cell": "A5", "input": "=FILTER(HSTACK(Stock[SKU],Stock[Item],Stock[Supplier],Stock[On hand],Stock[Reorder qty]),Stock[On hand]<=Stock[Reorder level],\"Nothing to reorder\")"}
+cell.set={"cell": "F5", "input": "=FILTER(Stock[Reorder qty]*Stock[Unit cost],Stock[On hand]<=Stock[Reorder level],\"\")"}
+home.cellStyle={"range": "A1", "name": "Title"}
+home.fontColor={"range": "A2", "color": "#595959"}
+home.bold={"range": "E2:F2", "on": true}
+home.alignRight={"range": "E2"}
+home.numberFormat={"range": "F2", "code": "$#,##0.00"}
+home.cellStyle={"range": "A4:F4", "name": "Heading 3"}
+home.alignRight={"range": "D4:F4"}
+home.numberFormat={"range": "F5:F30", "code": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "chars": 13}
+home.columnWidth={"cols": "B:B", "chars": 22}
+home.columnWidth={"cols": "C:C", "chars": 16}
+home.columnWidth={"cols": "D:E", "chars": 11}
+home.columnWidth={"cols": "F:F", "chars": 12}
+view.gridlines={"on": false}
+selection.set={"range": "A1"}
+sheet.activate={"sheet": "Stock"}
+selection.set={"range": "A1"}

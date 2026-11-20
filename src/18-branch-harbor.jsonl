@@ -1,0 +1,4 @@
+# Branch file for the batch-convert example in Chapter 18
+range.setValues={"range":"A1","values":[["Product","Units","Revenue"],["House blend 250g",75,"=B2*9.5"],["Decaf 250g",17,"=B3*10"],["Travel mug",20,"=B4*14"],["Gift card",26,"=B5*25"]]}
+home.bold={"range":"A1:C1","on":true}
+home.numberFormat={"range":"C2:C5","format":"Currency"}

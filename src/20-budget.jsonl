@@ -1,0 +1,59 @@
+# 20-budget.xlsx: the finished monthly budget for chapter 20 (runs on top of the starter)
+# build: gridcraft-cli run --in workbooks/20-budget-start.xlsx --script workbooks/src/20-budget.jsonl --out workbooks/20-budget.xlsx
+# 1. names for the transaction columns (whole columns, so new rows are always included)
+formulas.defineName={"name": "TxDate", "refersTo": "=Transactions!$A:$A"}
+formulas.defineName={"name": "TxCategory", "refersTo": "=Transactions!$C:$C"}
+formulas.defineName={"name": "TxAmount", "refersTo": "=Transactions!$D:$D"}
+# 2. the Budget sheet, first in the workbook
+home.insertSheet={"name": "Budget", "before": 0}
+sheet.activate={"sheet": "Budget"}
+range.setValues={"range": "B2", "values": [["Monthly Budget"], ["Month"], ["Month ends"]]}
+cell.set={"cell": "C3", "input": "10/1/2026"}
+cell.set={"cell": "C4", "input": "=EOMONTH(C3,0)"}
+# summary
+range.setValues={"range": "B6", "values": [["Summary", "Budget", "Actual"], ["Income", "=C15", "=D15"], ["Expenses", "=C30", "=D30"], ["Left over", "=C7-C8", "=D7-D8"]]}
+# income
+range.setValues={"range": "B11", "values": [["Income", "Budget", "Actual", "Difference"], ["Salary", 3250, 3250, "=D12-C12"], ["Freelance work", 300, 420, "=D13-C13"], ["Other income", 0, 35, "=D14-C14"], ["Total income", "=SUM(C12:C14)", "=SUM(D12:D14)", "=SUM(E12:E14)"]]}
+# expenses
+range.setValues={"range": "B17", "values": [["Expenses", "Budget", "Actual", "Remaining", "% Used"], ["Rent", 1400], ["Groceries", 520], ["Utilities", 180], ["Transport", 150], ["Phone & internet", 85], ["Insurance", 120], ["Dining out", 160], ["Entertainment", 90], ["Clothing", 100], ["Health", 60], ["Gifts", 50], ["Savings", 400], ["Total expenses"]]}
+cell.set={"cell": "D18", "input": "=SUMIFS(TxAmount,TxCategory,$B18,TxDate,\">=\"&$C$3,TxDate,\"<=\"&$C$4)"}
+cell.set={"cell": "E18", "input": "=C18-D18"}
+cell.set={"cell": "F18", "input": "=D18/C18"}
+edit.fillDown={"range": "D18:F29"}
+range.setValues={"range": "C30", "values": [["=SUM(C18:C29)", "=SUM(D18:D29)", "=SUM(E18:E29)", "=D30/C30"]]}
+# 3. formatting
+home.cellStyle={"range": "B2", "name": "Title"}
+home.numberFormat={"range": "C3", "code": "mmmm yyyy"}
+home.numberFormat={"range": "C4", "code": "d-mmm-yyyy"}
+home.alignLeft={"range": "C3:C4"}
+home.bold={"range": "B3:C3", "on": true}
+home.fontColor={"range": "B4:C4", "color": "#595959"}
+home.cellStyle={"range": "B6:D6", "name": "Heading 3"}
+home.cellStyle={"range": "B11:E11", "name": "Heading 3"}
+home.cellStyle={"range": "B17:F17", "name": "Heading 3"}
+home.alignRight={"range": "C6:D6"}
+home.alignRight={"range": "C11:E11"}
+home.alignRight={"range": "C17:F17"}
+home.accounting={"range": "C7:D9", "symbol": "$"}
+home.accounting={"range": "C12:E15", "symbol": "$"}
+home.accounting={"range": "C18:E30", "symbol": "$"}
+home.percent={"range": "F18:F30"}
+home.cellStyle={"range": "B9:D9", "name": "Total"}
+home.cellStyle={"range": "B15:E15", "name": "Total"}
+home.cellStyle={"range": "B30:F30", "name": "Total"}
+home.columnWidth={"cols": "A:A", "chars": 2}
+home.columnWidth={"cols": "B:B", "chars": 22}
+home.columnWidth={"cols": "C:F", "chars": 13}
+# 4. conditional formatting: colour scale on % Used, light red rows when a category is over budget
+selection.set={"range": "F18:F29"}
+home.conditionalFormat={"range": "F18:F29", "rule": {"type": "colorScale", "colors": ["#63BE7B", "#FFEB84", "#F8696B"]}}
+home.conditionalFormat={"range": "B18:E29", "rule": {"type": "expression", "formula": "=$D18>$C18", "preset": "lightRedFillDarkRedText"}}
+# 5. chart: budget vs actual for each expense category
+insert.chart={"range": "B17:D29", "type": "bar", "subtype": "clustered", "title": "Budget vs Actual", "at": "H2", "width": 480, "height": 440}
+view.gridlines={"on": false}
+# 6. a dropdown for the Category column of Transactions
+sheet.activate={"sheet": "Transactions"}
+data.validation={"range": "C2:C500", "type": "list", "formula1": "=Budget!$B$18:$B$29", "errorStyle": "stop", "errorTitle": "Unknown category", "errorMessage": "Pick a category from the list. To add a new one, add it to the Budget sheet first."}
+selection.set={"range": "A1"}
+sheet.activate={"sheet": "Budget"}
+selection.set={"range": "C3"}

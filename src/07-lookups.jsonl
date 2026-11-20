@@ -1,0 +1,125 @@
+# 07-lookups.xlsx: Bean & Leaf, a small coffee and tea shop: price list, orders, shipping bands, store stock (Chapter 7)
+# build: gridcraft-cli run --script workbooks/src/07-lookups.jsonl --out workbooks/07-lookups.xlsx
+
+# Products: the price list every lookup reads.
+sheet.rename={"sheet": "Sheet1", "name": "Products"}
+sheet.activate={"sheet": "Products"}
+range.setValues={"range": "A1", "values": [["Code", "Product", "Category", "Price", "In stock"], ["C-101", "House Blend Coffee 250g", "Coffee", 8.5, 46], ["C-102", "Dark Roast Coffee 250g", "Coffee", 8.95, 31], ["C-103", "Decaf Coffee 250g", "Coffee", 9.25, 12], ["C-104", "Espresso Beans 1kg", "Coffee", 27.0, 9], ["T-201", "English Breakfast Tea (50 bags)", "Tea", 4.2, 58], ["T-202", "Earl Grey Tea (50 bags)", "Tea", 4.6, 40], ["T-203", "Sencha Green Tea 100g", "Tea", 5.1, 22], ["T-204", "Peppermint Tea (40 bags)", "Tea", 3.9, 35], ["T-205", "Chamomile Tea (40 bags)", "Tea", 3.9, 0], ["A-301", "Pour-over Filter Papers (100)", "Accessories", 4.5, 64], ["A-302", "Ceramic Mug", "Accessories", 11.0, 18], ["A-303", "Glass Teapot", "Accessories", 24.0, 7], ["A-304", "Hand Coffee Grinder", "Accessories", 32.5, 5], ["A-305", "Milk Frother", "Accessories", 18.75, 11]]}
+home.bold={"range": "A1:E1", "on": true}
+home.fillColor={"range": "A1:E1", "color": "#DDEBF7"}
+home.borders={"range": "A1:E1", "preset": "bottom"}
+home.numberFormat={"range": "D2:D15", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 60}
+home.columnWidth={"cols": "B:B", "width": 215}
+home.columnWidth={"cols": "C:C", "width": 95}
+home.columnWidth={"cols": "D:E", "width": 75}
+view.freezeTopRow={}
+
+# Orders: codes and quantities; Product, Price and Line total are left for the reader. T-209 is not on the price list.
+home.insertSheet={"name": "Orders"}
+sheet.activate={"sheet": "Orders"}
+range.setValues={"range": "A1", "values": [["Order", "Date", "Customer", "Code", "Qty", "Product", "Price", "Line total"], [2101, "11/2/2026", "Brightside Café", "C-104", 3], [2102, "11/2/2026", "Maple Dental", "T-202", 6], [2103, "11/3/2026", "Peak Fitness", "A-305", 1], [2104, "11/3/2026", "Brightside Café", "C-101", 10], [2105, "11/4/2026", "Riverside Books", "T-209", 4], [2106, "11/5/2026", "Oak & Ivy Florist", "A-302", 6], [2107, "11/5/2026", "Hilltop Stationery", "T-201", 12], [2108, "11/6/2026", "Green Leaf Grocers", "C-102", 8], [2109, "11/9/2026", "Peak Fitness", "T-203", 5], [2110, "11/9/2026", "Maple Dental", "A-301", 4], [2111, "11/10/2026", "Bluebird Bakery", "C-103", 6], [2112, "11/11/2026", "Riverside Books", "A-303", 1]]}
+range.setValues={"range": "A14", "values": [["Total"]]}
+home.bold={"range": "A1:H1", "on": true}
+home.fillColor={"range": "A1:H1", "color": "#DDEBF7"}
+home.borders={"range": "A1:H1", "preset": "bottom"}
+home.bold={"range": "A14:H14", "on": true}
+home.borders={"range": "A14:H14", "preset": "top"}
+home.numberFormat={"range": "B2:B13", "format": "d mmm"}
+home.numberFormat={"range": "G2:H14", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 50}
+home.columnWidth={"cols": "B:B", "width": 55}
+home.columnWidth={"cols": "C:C", "width": 130}
+home.columnWidth={"cols": "D:D", "width": 55}
+home.columnWidth={"cols": "E:E", "width": 40}
+home.columnWidth={"cols": "F:F", "width": 215}
+home.columnWidth={"cols": "G:H", "width": 75}
+
+# Shipping: cost by parcel weight. Each band starts at the weight in column A (approximate match).
+home.insertSheet={"name": "Shipping"}
+sheet.activate={"sheet": "Shipping"}
+range.setValues={"range": "A1", "values": [["Weight from (kg)", "Cost"], [0, 4.95], [1, 6.5], [2, 8.25], [5, 12.0], [10, 19.5], [20, 29.0]]}
+home.bold={"range": "A1:B1", "on": true}
+home.fillColor={"range": "A1:B1", "color": "#DDEBF7"}
+home.borders={"range": "A1:B1", "preset": "bottom"}
+home.numberFormat={"range": "B2:B7", "format": "$#,##0.00"}
+range.setValues={"range": "D1", "values": [["Parcel", "Weight (kg)", "Cost"], ["P-01", 0.4], ["P-02", 1], ["P-03", 1.8], ["P-04", 3.5], ["P-05", 7.2], ["P-06", 12], ["P-07", 25]]}
+home.bold={"range": "D1:F1", "on": true}
+home.fillColor={"range": "D1:F1", "color": "#DDEBF7"}
+home.borders={"range": "D1:F1", "preset": "bottom"}
+home.numberFormat={"range": "F2:F8", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 115}
+home.columnWidth={"cols": "B:B", "width": 70}
+home.columnWidth={"cols": "C:C", "width": 30}
+home.columnWidth={"cols": "D:D", "width": 60}
+home.columnWidth={"cols": "E:E", "width": 85}
+home.columnWidth={"cols": "F:F", "width": 70}
+
+# Store Stock: a two-way table, products down and shops across.
+home.insertSheet={"name": "Store Stock"}
+sheet.activate={"sheet": "Store Stock"}
+range.setValues={"range": "A1", "values": [["Product", "Downtown", "Riverside", "Airport", "Market Hall"], ["House Blend Coffee 250g", 14, 9, 22, 6], ["Dark Roast Coffee 250g", 8, 12, 5, 10], ["Espresso Beans 1kg", 3, 0, 4, 2], ["Earl Grey Tea (50 bags)", 11, 7, 15, 9], ["Ceramic Mug", 6, 4, 0, 8], ["Glass Teapot", 2, 1, 3, 1]]}
+home.bold={"range": "A1:E1", "on": true}
+home.fillColor={"range": "A1:E1", "color": "#DDEBF7"}
+home.borders={"range": "A1:E1", "preset": "bottom"}
+range.setValues={"range": "A9", "values": [["Product", "Ceramic Mug"], ["Store", "Market Hall"], ["In stock", null]]}
+home.bold={"range": "A9:A11", "on": true}
+home.fillColor={"range": "B9:B10", "color": "#FFF2CC"}
+home.columnWidth={"cols": "A:A", "width": 185}
+home.columnWidth={"cols": "B:E", "width": 85}
+
+# Price History: every price change, oldest first. The latest price is the last match.
+home.insertSheet={"name": "Price History"}
+sheet.activate={"sheet": "Price History"}
+range.setValues={"range": "A1", "values": [["Changed on", "Code", "New price"], ["1/12/2026", "C-101", 7.95], ["1/12/2026", "T-201", 3.95], ["2/2/2026", "A-302", 10.0], ["3/16/2026", "C-102", 8.75], ["4/1/2026", "C-101", 8.25], ["5/4/2026", "T-203", 4.8], ["6/1/2026", "A-302", 11.0], ["8/17/2026", "T-201", 4.2], ["9/1/2026", "C-101", 8.5], ["9/1/2026", "C-102", 8.95], ["10/5/2026", "T-203", 5.1]]}
+home.bold={"range": "A1:C1", "on": true}
+home.fillColor={"range": "A1:C1", "color": "#DDEBF7"}
+home.borders={"range": "A1:C1", "preset": "bottom"}
+home.numberFormat={"range": "A2:A12", "format": "d mmm yyyy"}
+home.numberFormat={"range": "C2:C12", "format": "$#,##0.00"}
+range.setValues={"range": "E1", "values": [["Code", "C-101"], ["Latest price", null], ["First price", null]]}
+home.bold={"range": "E1:E3", "on": true}
+home.fillColor={"range": "F1", "color": "#FFF2CC"}
+home.numberFormat={"range": "F2:F3", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 100}
+home.columnWidth={"cols": "B:B", "width": 60}
+home.columnWidth={"cols": "C:C", "width": 80}
+home.columnWidth={"cols": "D:D", "width": 30}
+home.columnWidth={"cols": "E:E", "width": 95}
+home.columnWidth={"cols": "F:F", "width": 70}
+
+# Zones: a sideways table for HLOOKUP.
+home.insertSheet={"name": "Zones"}
+sheet.activate={"sheet": "Zones"}
+range.setValues={"range": "A1", "values": [["Zone", 1, 2, 3, 4], ["Delivery days", 1, 2, 3, 5], ["Local courier fee", 0, 3.5, 5.0, 8.0]]}
+home.bold={"range": "A1:A3", "on": true}
+home.fillColor={"range": "A1:E1", "color": "#DDEBF7"}
+home.bold={"range": "B1:E1", "on": true}
+home.numberFormat={"range": "B3:E3", "format": "$#,##0.00"}
+home.columnWidth={"cols": "A:A", "width": 120}
+home.columnWidth={"cols": "B:E", "width": 60}
+
+# Lookup Problems: three lookups that fail for everyday reasons.
+home.insertSheet={"name": "Lookup Problems"}
+sheet.activate={"sheet": "Lookup Problems"}
+range.setValues={"range": "A1", "values": [["Invoice", "Customer"], [5001, "Brightside Café"], [5002, "Maple Dental"], [5003, "Peak Fitness"], [5004, "Riverside Books"]]}
+home.bold={"range": "A1:B1", "on": true}
+home.fillColor={"range": "A1:B1", "color": "#DDEBF7"}
+home.borders={"range": "A1:B1", "preset": "bottom"}
+range.setValues={"range": "D1", "values": [["What we look up", "Result"], ["5003"], ["C-102 "], ["T-205"]], "parse": false}
+home.bold={"range": "D1:E1", "on": true}
+home.fillColor={"range": "D1:E1", "color": "#DDEBF7"}
+home.borders={"range": "D1:E1", "preset": "bottom"}
+range.setValues={"range": "E2", "values": [["=XLOOKUP(D2,A2:A5,B2:B5)"], ["=XLOOKUP(D3,Products!A2:A15,Products!B2:B15)"], ["=VLOOKUP(D4,Products!A2:E15,4)"]]}
+range.setValues={"range": "G1", "values": [["Why it fails"], ["D2 holds the text 5003, not the number"], ["D3 has a space after the code"], ["VLOOKUP without FALSE on an unsorted list"]]}
+home.bold={"range": "G1", "on": true}
+home.italic={"range": "G2:G4", "on": true}
+home.columnWidth={"cols": "A:A", "width": 60}
+home.columnWidth={"cols": "B:B", "width": 120}
+home.columnWidth={"cols": "C:C", "width": 30}
+home.columnWidth={"cols": "D:D", "width": 110}
+home.columnWidth={"cols": "E:E", "width": 180}
+home.columnWidth={"cols": "F:F", "width": 20}
+home.columnWidth={"cols": "G:G", "width": 280}
+sheet.activate={"sheet": "Orders"}
+selection.set={"range": "F2"}

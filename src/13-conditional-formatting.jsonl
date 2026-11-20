@@ -1,0 +1,33 @@
+# 13-conditional-formatting.xlsx: store sales, an event task list and gym renewals for chapter 13
+sheet.rename={"name": "Sales"}
+range.setValues={"range": "A1", "values": [["Store", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Total", "Target", "% of Target"], ["Harbor St", 10300, 12800, 12800, 9600, 12600, 9900, "=SUM(B2:G2)", 66000, "=H2/I2"], ["Old Town", 13900, 16600, 17100, 13600, 13300, 12900, "=SUM(B3:G3)", 66000, "=H3/I3"], ["Riverside", 13300, 11600, 14200, 12300, 15800, 15300, "=SUM(B4:G4)", 60000, "=H4/I4"], ["Market Sq", 9400, 9000, 13500, 10100, 11300, 13200, "=SUM(B5:G5)", 78000, "=H5/I5"], ["Northgate", 12500, 9100, 9700, 8900, 10600, 12300, "=SUM(B6:G6)", 78000, "=H6/I6"], ["University", 13800, 14200, 15500, 13500, 15600, 12200, "=SUM(B7:G7)", 72000, "=H7/I7"], ["Station Rd", 16300, 16500, 14100, 16900, 15300, 16000, "=SUM(B8:G8)", 66000, "=H8/I8"], ["Hillcrest", 13800, 14100, 12300, 12900, 10600, 11300, "=SUM(B9:G9)", 66000, "=H9/I9"]]}
+home.numberFormat={"range": "B2:I9", "code": "#,##0"}
+home.numberFormat={"range": "J2:J9", "code": "0%"}
+home.bold={"range": "A1:J1", "on": true}
+home.columnWidth={"cols": "A:A", "chars": 12}
+home.columnWidth={"cols": "B:G", "chars": 8}
+home.columnWidth={"cols": "H:J", "chars": 11}
+home.insertSheet={"name": "Tasks", "before": 1}
+sheet.activate={"sheet": "Tasks"}
+range.setValues={"range": "A1", "values": [["Task", "Owner", "Due", "Status", "Hours"], ["Book the venue", "Nadia", "11/3/2026", "Done", 2], ["Send save-the-dates", "Liam", "11/6/2026", "Done", 3], ["Confirm caterer", "Nadia", "11/13/2026", "In progress", 4], ["Design the poster", "Kofi", "11/16/2026", "Not started", 6], ["Order name badges", "Liam", "11/18/2026", "Not started", 1], ["Print programmes", "Kofi", "11/24/2026", "Not started", 2], ["Book the photographer", "Sara", "11/20/2026", "In progress", 1], ["Arrange parking passes", "Sara", "11/27/2026", "Not started", 2], ["Write the welcome speech", "Nadia", "12/1/2026", "Not started", 3], ["Test the sound system", "Kofi", "12/3/2026", "Not started", 2], ["Set up registration desk", "Liam", "12/4/2026", "Not started", 4], ["Send thank-you emails", "Sara", "12/8/2026", "Not started", 2]]}
+home.numberFormat={"range": "C2:C13", "code": "ddd d-mmm"}
+range.setValues={"range": "G1", "values": [["As of", "11/20/2026"]]}
+home.numberFormat={"range": "H1", "code": "d-mmm-yyyy"}
+home.bold={"range": "G1", "on": true}
+home.columnWidth={"cols": "H:H", "chars": 12}
+home.bold={"range": "A1:E1", "on": true}
+home.columnWidth={"cols": "A:A", "chars": 26}
+home.columnWidth={"cols": "B:B", "chars": 9}
+home.columnWidth={"cols": "C:C", "chars": 12}
+home.columnWidth={"cols": "D:D", "chars": 12}
+home.insertSheet={"name": "Renewals", "before": 2}
+sheet.activate={"sheet": "Renewals"}
+range.setValues={"range": "A1", "values": [["Member ID", "Name", "Plan", "Renewed On"], ["GYM-1040", "Jade Morgan", "Monthly", "10/17/2026"], ["GYM-1047", "Ali Rahman", "Annual", "10/9/2026"], ["GYM-1054", "Petra Novak", "Annual", "10/15/2026"], ["GYM-1061", "Sean Doyle", "Annual", "10/20/2026"], ["GYM-1068", "Mei Lin", "Annual", "10/13/2026"], ["GYM-1047", "Ali Rahman", "Annual", "10/30/2026"], ["GYM-1075", "Carlos Vega", "Monthly", "10/19/2026"], ["GYM-1082", "Ella Brandt", "Annual", "10/18/2026"], ["GYM-1089", "Kwame Asante", "Monthly", "10/19/2026"], ["GYM-1096", "Noor Aziz", "Monthly", "10/29/2026"], ["GYM-1082", "Ella Brandt", "Annual", "10/29/2026"], ["GYM-1103", "Oscar Lund", "Monthly", "10/23/2026"], ["GYM-1110", "Ivy Park", "Annual", "10/5/2026"], ["GYM-1117", "Ruth Adler", "Monthly", "10/14/2026"], ["GYM-1124", "Yara Saleh", "Off-peak", "10/21/2026"], ["GYM-1131", "Max Turner", "Annual", "10/13/2026"]]}
+home.numberFormat={"range": "D2:D17", "code": "d-mmm-yyyy"}
+home.bold={"range": "A1:D1", "on": true}
+home.columnWidth={"cols": "A:A", "chars": 11}
+home.columnWidth={"cols": "B:B", "chars": 15}
+home.columnWidth={"cols": "C:C", "chars": 9}
+home.columnWidth={"cols": "D:D", "chars": 12}
+sheet.activate={"sheet": "Sales"}
+selection.set={"range": "A1"}
